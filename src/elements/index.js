@@ -1,10 +1,8 @@
 import Grid from "./Grid";
-import Image from "./Image";
+import Title from "./Title";
 import Text from "./Text";
 import Input from "./Input";
 import Button from "./Button";
-import Spinner from "./Spinner";
-import PostLayout from "./PostLayout";
-import Like from "./Like";
+import Image from "./Image";
 
-export { Grid, Image, Text, Input, Button, Spinner, PostLayout, Like };
+export { Grid, Title, Text, Input, Button, Image };
