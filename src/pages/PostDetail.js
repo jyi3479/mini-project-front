@@ -1,7 +1,7 @@
 import React from "react";
 
-const Card = (props) => {
+const PostDetail = (props) => {
   return <React.Fragment></React.Fragment>;
 };
 
-export default Card;
+export default PostDetail;

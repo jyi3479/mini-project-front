@@ -1,7 +1,7 @@
 import React from "react";
 
-const Card = (props) => {
+const PostList = (props) => {
   return <React.Fragment>postlist</React.Fragment>;
 };
 
-export default Card;
+export default PostList;
