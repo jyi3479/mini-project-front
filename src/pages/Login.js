@@ -2,12 +2,14 @@ import React from "react";
 import { Title, Text, Input, Grid, Button } from "../elements";
 import { getCookie, setCookie, deleteCookie } from "../shared/Cookie";
 
-// import { useDispatch } from "react-redux";
-// import { actionCreators as userActions } from "../redux/modules/user";
+import { history } from "../redux/configureStore";
+
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 import { emailCheck } from "../shared/check";
 
 const Login = (props) => {
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [id, setId] = React.useState("");
   const [pwd, setPwd] = React.useState("");
 
@@ -17,13 +19,13 @@ const Login = (props) => {
       window.alert("이메일 형식이 맞지 않습니다!");
       return;
     }
-
-    // dispatch(userActions.loginFB(id, pwd));
+    console.log(id, pwd);
+    dispatch(userActions.logIn(id, pwd));
   };
 
   return (
     <Grid is_flex>
-      <Grid padding="15px" width="50vw" margin="50px auto">
+      <Grid padding="15px" width="50vw" margin="auto">
         <Grid center>
           <Text size="36px" bold>
             로그인
@@ -57,7 +59,10 @@ const Login = (props) => {
           <Button
             width="20vw"
             margin="30px auto"
-            _onClick={login}
+            _onClick={() => {
+              login();
+              history.push("/");
+            }}
             _disabled={id === "" || pwd === "" ? true : false}
           >
             로그인하기
