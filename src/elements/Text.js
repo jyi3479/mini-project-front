@@ -41,9 +41,9 @@ const P = styled.p`
   ${(props) => (props.center ? `text-align: center;` : "")};
   ${(props) => (props.width ? `width: ${props.width};` : "")};
 
-  @media (max-width: 48em) {
+  /* @media (max-width: 48em) {
     font-size: 16px;
-  }
+  } */
 `;
 
 export default Text;
