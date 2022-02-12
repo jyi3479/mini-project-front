@@ -12,6 +12,7 @@ const Grid = (props) => {
     relative,
     _onClick,
     is_main,
+    center,
   } = props;
 
   const styles = {
@@ -22,6 +23,7 @@ const Grid = (props) => {
     bg,
     relative,
     is_main,
+    center,
   };
   return (
     <GridContainer {...styles} onClick={_onClick}>
@@ -38,6 +40,7 @@ Grid.defaultProps = {
   margin: false,
   bg: false,
   relative: false,
+  center: false,
   _onClick: () => {},
 };
 
@@ -54,5 +57,6 @@ const GridContainer = styled.div`
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")};
   ${(props) => (props.relative ? `position: relative;` : "")};
+  ${(props) => (props.center ? `text-align: center;` : "")}
 `;
 export default Grid;

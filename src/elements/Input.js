@@ -19,7 +19,9 @@ const Input = (props) => {
   if (is_submit) {
     return (
       <label>
-        <Text margin="5px 0">{label}</Text>
+        <Text margin="5px 0" bold>
+          {label}
+        </Text>
         <InputField
           type={type}
           value={value}
@@ -30,13 +32,16 @@ const Input = (props) => {
               _onSubmit(e);
             }
           }}
+          style={{ margin, width }}
         />
       </label>
     );
   } else if (textarea) {
     return (
       <label>
-        <Text margin="5px 0">{label}</Text>
+        <Text margin="5px 0" bold>
+          {label}
+        </Text>
         <TextAreaField
           value={value}
           rows={10}
@@ -48,7 +53,9 @@ const Input = (props) => {
   } else {
     return (
       <label>
-        <Text margin="5px 0">{label}</Text>
+        <Text margin="5px 0" bold>
+          {label}
+        </Text>
         <InputField
           type={type}
           value={value}
@@ -79,13 +86,13 @@ const InputField = styled.input`
   min-width: 230px;
   box-sizing: border-box;
   padding: 10px;
-  border: 2px solid #25ccf7;
+  border: 2px solid #acacac;
   border-radius: 3px;
   ${(props) =>
     props.margin ? `margin: ${props.margin};` : `margin-bottom: 20px;`}
   &:focus {
     outline: none;
-    border: 2px solid #1b9cfc;
+    border: 2px solid #61b165;
   }
 
   @media (max-width: 280px) {
@@ -98,12 +105,12 @@ const TextAreaField = styled.textarea`
   width: 100%;
   box-sizing: border-box;
   padding: 10px;
-  border: 2px solid #25ccf7;
+  border: 2px solid #acacac;
   border-radius: 3px;
   margin-bottom: 20px;
   &:focus {
     outline: none;
-    border: 2px solid #1b9cfc;
+    border: 2px solid #61b165;
   }
 `;
 
