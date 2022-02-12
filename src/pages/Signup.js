@@ -29,7 +29,7 @@ const Signup = (props) => {
   };
   return (
     <Grid is_flex>
-      <Grid padding="16px" width="50vw" margin="50px auto">
+      <Grid padding="16px" width="50vw" margin="auto">
         <Grid center>
           <Text size="36px" bold>
             회원가입

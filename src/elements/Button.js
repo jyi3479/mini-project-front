@@ -52,7 +52,7 @@ const Btn = styled.button`
   cursor: pointer;
   box-sizing: border-box;
   width: ${(props) => props.width};
-  height: 40px;
+  height: 35px;
   background-color: ${(props) => (props.disabled ? "#acacac" : "#61b165")};
   border: none;
   border-radius: 5px;
