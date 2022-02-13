@@ -1,12 +1,12 @@
 import React from "react";
 import { Title, Text, Input, Grid, Button } from "../elements";
 
-// import { useDispatch } from "react-redux";
-// import { actionCreators as userActions } from "../redux/modules/user";
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 import { emailCheck } from "../shared/check";
 
 const Signup = (props) => {
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const [id, setId] = React.useState("");
   const [pwd, setPwd] = React.useState("");
@@ -25,7 +25,7 @@ const Signup = (props) => {
       return;
     }
 
-    // dispatch(userActions.signupFB(id, pwd, user_name));
+    dispatch(userActions.signupDB(id, pwd, pwd_check, user_name));
   };
   return (
     <Grid is_flex>
@@ -35,7 +35,7 @@ const Signup = (props) => {
             회원가입
           </Text>
         </Grid>
-        <Grid>
+        <Grid is_flex>
           <Input
             label="아이디"
             placeholder="아이디를 입력해주세요"
@@ -44,8 +44,11 @@ const Signup = (props) => {
               setId(e.target.value);
             }}
           />
+          <Button width="10vw" _disabled={id === "" ? true : false}>
+            중복확인
+          </Button>
         </Grid>
-        <Grid>
+        <Grid is_flex>
           <Input
             label="닉네임"
             placeholder="닉네임를 입력해주세요"
@@ -54,6 +57,9 @@ const Signup = (props) => {
               setUserName(e.target.value);
             }}
           />
+          <Button width="10vw" _disabled={user_name === "" ? true : false}>
+            중복확인
+          </Button>
         </Grid>
         <Grid>
           <Input
