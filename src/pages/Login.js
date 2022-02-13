@@ -1,6 +1,6 @@
 import React from "react";
-import { Title, Text, Input, Grid, Button } from "../elements";
-import { getCookie, setCookie, deleteCookie } from "../shared/Cookie";
+import { Text, Input, Grid, Button } from "../elements";
+// import { getCookie, setCookie, deleteCookie } from "../shared/Cookie";
 
 import { history } from "../redux/configureStore";
 

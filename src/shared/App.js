@@ -1,9 +1,9 @@
 import "./App.css";
 import React from "react";
-import { PostList, Login, Signup } from "../pages";
+import { PostList, Login, Signup, PostDetail } from "../pages";
 import { Header } from "../components";
 
-import { BrowserRouter, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 
@@ -15,6 +15,7 @@ function App() {
         <Route path="/" exact component={PostList} />
         <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={Signup} />
+        <Route path="/detail" exact component={PostDetail} />
       </ConnectedRouter>
     </div>
   );
