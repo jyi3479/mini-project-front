@@ -36,7 +36,7 @@ const loginDB = (id, pwd) => {
     userApis
       .login(id, pwd)
       .then((res) => {
-        console.log("post response", res.headers);
+        console.log("post response", res);
         // console.log(res.headers.get("set-cookie"));
         // const token = res.headers["authorization"];
         // setCookie("is_login", `${token}`);

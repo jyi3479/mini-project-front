@@ -15,6 +15,10 @@ const PostWrite = (props) => {
   const preview = false;
   const { history } = props;
 
+  const [title, setTitle] = React.useState("");
+  const [country, setCountry] = React.useState("");
+  const [city, setCity] = React.useState("");
+  const [evaluation, setEvaluation] = React.useState("");
   const [contents, setContents] = React.useState("");
 
   const changeContents = (e) => {
@@ -67,20 +71,29 @@ const PostWrite = (props) => {
       </Grid>
       <Grid padding="16px">
         <Input
-          _onChange={changeContents}
+          value={title}
+          _onChange={(e) => {
+            setTitle(e.target.value);
+          }}
           multiLine
-          label="게시글 내용"
-          placeholder="게시글 작성"
+          label="제목"
+          placeholder="제목"
         />
         <div style={{ display: "flex", justifyContent: "stretch" }}>
           <Input
-            _onChange={changeContents}
+            value={country}
+            _onChange={(e) => {
+              setCountry(e.target.value);
+            }}
             multiLine
             label="나라"
             placeholder="나라"
           />
           <Input
-            _onChange={changeContents}
+            value={city}
+            _onChange={(e) => {
+              setCity(e.target.value);
+            }}
             multiLine
             label="도시"
             placeholder="도시"
@@ -100,8 +113,11 @@ const PostWrite = (props) => {
           </Select>
         </Grid>
         <Input
+          value={contents}
           textarea
-          _onChange={changeContents}
+          _onChange={(e) => {
+            setContents(e.target.value);
+          }}
           multiLine
           label="후기"
           placeholder="후기"
