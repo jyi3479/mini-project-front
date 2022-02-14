@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import { PostList, Login, Signup, PostWrite } from "../pages";
+import { PostList, Login, Signup, PostWrite, Kakao } from "../pages";
 import { Header } from "../components";
 import { Grid, Button } from "../elements";
 
@@ -21,6 +21,7 @@ function App() {
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
           <Route path="/post" exact component={PostWrite} />
+          <Route path="/kakaoLogin" exact component={Kakao} />
         </ConnectedRouter>
       </Grid>
       {/* {is_login && ( */}

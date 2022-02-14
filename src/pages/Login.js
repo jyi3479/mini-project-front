@@ -8,6 +8,8 @@ import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { emailCheck } from "../shared/check";
 
+import { KAKAO_AUTH_URL } from "../shared/KakaoAuth";
+
 const Login = (props) => {
   const dispatch = useDispatch();
   const [id, setId] = React.useState("");
@@ -21,6 +23,10 @@ const Login = (props) => {
     }
     console.log(id, pwd);
     dispatch(userActions.loginDB(id, pwd));
+  };
+
+  const kakaoAuth = () => {
+    window.location.href = KAKAO_AUTH_URL;
   };
 
   return (
@@ -66,6 +72,7 @@ const Login = (props) => {
           >
             로그인하기
           </Button>
+          <Button _onClick={kakaoAuth}>카카오로그인</Button>
         </Grid>
       </Grid>
     </Grid>
