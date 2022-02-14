@@ -4,6 +4,7 @@ import { Grid, Image, Text, Button, Input } from "../elements";
 
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
+// import { actionCreators as imageActions } from "../redux/modules/image";
 
 import styled from "styled-components";
 
@@ -15,18 +16,56 @@ const PostWrite = (props) => {
   const preview = false;
   const { history } = props;
 
+  // const [image, setImage] = React.useState("");
   const [title, setTitle] = React.useState("");
   const [country, setCountry] = React.useState("");
   const [city, setCity] = React.useState("");
   const [evaluation, setEvaluation] = React.useState("");
   const [contents, setContents] = React.useState("");
+  const [post_list, setPostList] = React.useState({});
 
   const changeContents = (e) => {
     setContents(e.target.value);
   };
 
+  const selectBox = (e) => {
+    console.log(e.target.value);
+  };
+  // const fileInput = React.useRef();
+  // const selectFile = (e) => {
+  //   console.log(e.target);
+  //   // input에 가진 files 객체 보기
+  //   console.log(e.target.files);
+  //   // 선택한 파일에 어떻게 저장되어 있나 보기
+  //   console.log(e.target.files[0]);
+  //   // ref로도 확인
+  //   console.log(fileInput.current.files[0]);
+  // };
+
+  // const reader = new FileReader();
+  // const file = fileInput.current.files[0];
+  // // 파일 내용을 읽어온다.
+  // reader.readAsDataURL(file);
+  // // 읽기가 끝나면 발생하는 이벤트 핸들러.
+  // reader.onloadend = () => {
+  //   console.log(reader.result);
+  //   // dispatch(imageActions.setPreview(reader.result));
+  // };
+
   const addPost = () => {
-    dispatch(postActions.addPostFB(contents));
+    console.log(title, country, city, evaluation, contents);
+    const temp_list = {
+      nickname: "juyeong",
+      imgURL: "sldfkjsdlk",
+      title: title,
+      country: country,
+      city: city,
+      evaluation: evaluation,
+      content: contents,
+    };
+    // setPostList(temp_list);
+    console.log(temp_list);
+    dispatch(postActions.addPostDB(temp_list));
   };
 
   // if (!is_login) {
@@ -103,7 +142,13 @@ const PostWrite = (props) => {
           <label htmlFor="select" style={{ fontWeight: 700, fontSize: "14px" }}>
             평가
           </label>
-          <Select name="job">
+          <Select
+            name="evaluation"
+            onChange={(e) => {
+              setEvaluation(e.target.value);
+            }}
+            value={evaluation}
+          >
             <option value="">평가</option>
             <option value="아주좋음">아주좋음</option>
             <option value="좋음">좋음</option>
@@ -124,7 +169,20 @@ const PostWrite = (props) => {
         />
       </Grid>
       <Grid is_flex>
-        <Button width="30vw" margin="10px auto" _onClick={addPost}>
+        <Button
+          width="30vw"
+          margin="10px auto"
+          _onClick={addPost}
+          _disabled={
+            title === "" ||
+            country === "" ||
+            city === "" ||
+            evaluation === "" ||
+            contents === ""
+              ? true
+              : false
+          }
+        >
           게시글 작성
         </Button>
       </Grid>
@@ -152,6 +210,27 @@ const Select = styled.select`
   /* -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none; */
+`;
+
+const UploadBox = styled.label`
+  margin: 0 8px 0 8px;
+  label {
+    display: inline-block;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+  input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
 `;
 
 export default PostWrite;

@@ -1,5 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
+import axios from "axios";
+import { postApis } from "../../shared/api";
 
 // action type
 const SET_POST = "SET_POST";
@@ -57,6 +59,27 @@ const initialPost = {
   insert_dt: "2021-02-27 10:00:00",
 };
 
+const getPostDB = () => {
+  return function (dispatch, getState, { history }) {
+    postApis.getPost().then((res) => {
+      console.log(res);
+    });
+  };
+};
+
+const addPostDB = (post_list) => {
+  return function (dispatch, getState, { history }) {
+    postApis
+      .createPost(post_list)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
 // reducer
 export default handleActions(
   {
@@ -70,5 +93,7 @@ export default handleActions(
 const actionCreators = {
   setPost,
   addPost,
+  getPostDB,
+  addPostDB,
 };
 export { actionCreators };

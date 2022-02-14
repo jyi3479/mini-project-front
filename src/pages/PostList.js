@@ -1,7 +1,7 @@
 import React from "react";
 import { Post } from "../components";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { Text } from "../elements";
 import Grid from "@mui/material/Grid";
@@ -9,8 +9,13 @@ import Container from "@mui/material/Container";
 import styled from "styled-components";
 
 const PostList = (props) => {
+  const dispatch = useDispatch();
   const post_list = useSelector((state) => state.post.list);
   console.log(post_list);
+
+  React.useEffect(() => {
+    dispatch(postActions.getPostDB());
+  }, []);
 
   return (
     <Grid>

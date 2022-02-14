@@ -27,34 +27,72 @@ const loginAction = (user) => {
   return function (dispatch, getState, { history }) {
     console.log(history);
     dispatch(setUser(user));
-    history.push("/");
+    // history.push("/");
   };
 };
 
 const loginDB = (id, pwd) => {
   return function (dispatch, getState, { history }) {
-    userApis
-      .login(id, pwd)
-      .then((res) => {
-        console.log("post response", res);
-        // console.log(res.headers.get("set-cookie"));
-        // const token = res.headers["authorization"];
-        // setCookie("is_login", `${token}`);
-        // setAuth(token);
-        // document.location.href = "/";
+    // const params = new URLSearchParams();
+    // params.append("username", id);
+    // params.append("password", pwd);
+
+    const params = new URLSearchParams();
+    params.append("username", id);
+    params.append("password", pwd);
+
+    axios
+      .post("/user/login", params, {
+        withCredentials: true,
+        headers: {
+          "content-type": "application/x-www-form-urlencoded;charset=UTF-8",
+        },
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+
+    // userApis
+    //   .login(params)
+    //   .then((res) => {
+    //     console.log("post response", res);
+    //     // console.log(res.headers.get("set-cookie"));
+    //     // const token = res.headers["authorization"];
+    //     // setCookie("is_login", `${token}`);
+    //     // // setAuth(token);
+    //     // document.location.href = "/";
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   };
 };
 
 const signupDB = (id, pwd, pwdcheck, nickname) => {
   return function (dispatch, getState, { history }) {
-    userApis
-      .signup(id, pwd, pwdcheck, nickname)
-      .then((res) => console.log(res, "회원가입 성공"))
-      .catch((error) => console.log(error));
+    const params = new URLSearchParams();
+    params.append("username", id);
+    params.append("password", pwd);
+    params.append("passwordcheck", pwdcheck);
+    params.append("nickname", nickname);
+
+    axios
+      .post("/user/signup", params, {
+        withCredentials: true,
+        headers: {
+          "content-type": "application/x-www-form-urlencoded;charset=UTF-8",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+
+    // userApis
+    //   .signup(id, pwd, pwdcheck, nickname)
+    //   .then((res) => console.log(res, "회원가입 성공"))
+    //   .catch((error) => console.log(error));
   };
 };
 

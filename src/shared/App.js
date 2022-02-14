@@ -11,7 +11,7 @@ import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 
 function App() {
-  const is_login = useSelector((state) => state.user.is_login);
+  // const is_login = useSelector((state) => state.user.is_login);
   return (
     <div className="App">
       <Grid padding="10px 30px">
@@ -20,7 +20,7 @@ function App() {
           <Route path="/" exact component={PostList} />
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
-          <Route path="/write" exact component={PostWrite} />
+          <Route path="/post" exact component={PostWrite} />
         </ConnectedRouter>
       </Grid>
       {/* {is_login && ( */}
@@ -29,7 +29,7 @@ function App() {
         width="50px"
         is_circle
         _onClick={() => {
-          history.push("/write");
+          history.push("/post");
         }}
       >
         +
