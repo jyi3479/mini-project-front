@@ -38,7 +38,7 @@ const P = styled.p`
   font-size: ${(props) => props.size};
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
   font-weight: ${(props) => (props.bold ? 700 : 400)};
-  ${(props) => (props.center ? `text-align: center;` : "")};
+  ${(props) => (props.center ? `text-align: left;` : "")};
   ${(props) => (props.width ? `width: ${props.width};` : "")};
 
   /* @media (max-width: 48em) {

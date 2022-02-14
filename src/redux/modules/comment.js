@@ -2,8 +2,8 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 // import firebase from "firebase/app";
 // import { firestore, realtime } from "../../shared/firebase";
-import moment from "moment";
-import { actionCreators as postActions } from "./post";
+// import moment from "moment";
+// import { actionCreators as postActions } from "./post";
 
 //action
 const SET_COMMENT = "SET_COMMENT";
@@ -25,29 +25,29 @@ const initialState = {
 };
 
 //middleware
-const addCommentFB = (post_id, comment) => {
-  return function (dispatch, getState, { history }) {
-    // const commentDB = firestore.collection("comment");
+// const addCommentFB = (post_id, comment) => {
+//   return function (dispatch, getState, { history }) {
+//     // const commentDB = firestore.collection("comment");
 
-    const user_info = getState().user.user;
+//     const user_info = getState().user.user;
 
-    let new_comment = {
-      post_id,
-      user_name: user_info.user_name,
-      user_id: user_info.uid,
-      user_profie: user_info.user_profile,
-      comment,
-      insert_dt: moment().format("YYYY-MM-DD hh:mm:ss"),
-    };
+//     let new_comment = {
+//       post_id,
+//       user_name: user_info.user_name,
+//       user_id: user_info.uid,
+//       user_profie: user_info.user_profile,
+//       comment,
+//       insert_dt: moment().format("YYYY-MM-DD hh:mm:ss"),
+//     };
 
-//     commentDB.add(new_comment).then((doc) => {
-//       const postDB = firestore.collection("post");
+//     // commentDB.add(new_comment).then((doc) => {
+//     //   const postDB = firestore.collection("post");
 
-//       const post = getState().post.list.find((p) => p.id === post_id);
+//     //   const post = getState().post.list.find((p) => p.id === post_id);
 
-//       const increment = firebase.firestore.FieldValue.increment(1);
+//     //   const increment = firebase.firestore.FieldValue.increment(1);
 
-//       new_comment = { ...new_comment, id: doc.id };
+//     //   new_comment = { ...new_comment, id: doc.id };
 
 //       postDB
 //         .doc(post_id)
@@ -89,13 +89,13 @@ const addCommentFB = (post_id, comment) => {
 //   };
 // };
 
-// const getCommentFB = (post_id) => {
-//   return function (dispatch, getState, { history }) {
-//     if (!post_id) {
-//       return;
-//     }
+const getCommentFB = (post_id) => {
+  return function (dispatch, getState, { history }) {
+    if (!post_id) {
+      return;
+    }
 
-//     const commentDB = firestore.collection("comment");
+    // const commentDB = firestore.collection("comment");
 
 //     commentDB
 //       .where("post_id", "==", post_id)
@@ -111,31 +111,29 @@ const addCommentFB = (post_id, comment) => {
 //       .catch((error) => {
 //         console.log("댓글 정보를 가지고 올수가 없어요ㅠㅠ", error);
 //       });
-//   };
-// };
+  };
+};
 
 //reducer
-
-// export default handleActions(
-//   {
-//     [SET_COMMENT]: (state, action) =>
-//       produce(state, (draft) => {
-//         draft.list[action.payload.post_id] = action.payload.comment_list;
-//       }),
-//     [ADD_COMMENT]: (state, action) =>
-//       produce(state, (draft) => {
-//         draft.list[action.payload.post_id].unshift(action.payload.comment);
-//       }),
-//   },
-//   initialState
-// );
+export default handleActions(
+  {
+    [SET_COMMENT]: (state, action) =>
+      produce(state, (draft) => {
+        draft.list[action.payload.post_id] = action.payload.comment_list;
+      }),
+    [ADD_COMMENT]: (state, action) =>
+      produce(state, (draft) => {
+        draft.list[action.payload.post_id].unshift(action.payload.comment);
+      }),
+  },
+  initialState
+);
 
 const actionCreators = {
   setComment,
   addComment,
   getCommentFB,
-  addCommentFB,
+  // addCommentFB,
 };
-  }
-}
+
 export { actionCreators };

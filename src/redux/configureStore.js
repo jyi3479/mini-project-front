@@ -3,8 +3,10 @@ import thunk from "redux-thunk";
 import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
 
+
 import User from "./modules/user";
 import Post from "./modules/post";
+import Comment from "./modules/comment";
 
 // ## 스토어에 히스토리 넣어주기 (히스토리 만들어줌) : 이제 스토리에 히스토리도 넣어줄 수 있음.
 
@@ -14,6 +16,7 @@ export const history = createBrowserHistory();
 const rootReducer = combineReducers({
   user: User,
   post: Post,
+  comment: Comment,
   router: connectRouter(history), // 우리가 만든 히스토리랑 router가 연결이 되는 것임.
 });
 

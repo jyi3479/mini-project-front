@@ -1,19 +1,19 @@
 import React, {useState} from "react";
 import { Grid, Text, Image } from "../elements";
-// import { useDispatch, useSelector } from "react-redux";
-import moment from 'moment';
+// import { useSelector } from "react-redux";
 import 'moment/locale/ko';
-import { CommentList } from ".";
+// const [layout, setLayout] = useState(_post ? _post.layout : "bottom");
+
 
 const Card = (props) => {
     const [timer, setTimer] = useState("00:00:00");
 
     const currentTimer = () => {
       const date = new Date();
-      const hours = String(date.getHours()).padStart(2, "0");
-      const minutes = String(date.getMinutes()).padStart(2, "0");
-      const seconds = String(date.getSeconds()).padStart(2, "0");
-      setTimer(`${hours}:${minutes}:${seconds}`)
+      // const hours = String(date.getHours()).padStart(2, "0");
+      // const minutes = String(date.getMinutes()).padStart(2, "0");
+      // const seconds = String(date.getSeconds()).padStart(2, "0");
+      setTimer(`${date}`)
     }
       const startTimer = () => {
         setInterval(currentTimer, 1000)
@@ -29,7 +29,7 @@ const Card = (props) => {
   // useEffect(() => {
   //   const is_checked = (e) => {
   //     if (e.target.checked) {
-  //       // setLayout(e.target.value);
+  //       setLayout(e.target.value);
   //     }
   //   };
   // }
@@ -48,10 +48,15 @@ const Card = (props) => {
         <label htmlFor="left">
           <strong
             // style={
-            //   // layout === "left" ? { color: "#1B9CFC", margin: "10px" } : null
+            //   layout === "left" ? { color: "#1B9CFC", margin: "10px" } : null
             // }
           >
             이보시개... 밥운 먹었눙가아아??
+          </strong>
+        </label>
+        <label htmlFor="right">
+          <strong>
+          <h1>{timer}</h1>
           </strong>
         </label>
       </Grid>
@@ -60,13 +65,14 @@ const Card = (props) => {
           half
           shape="big_square"
           // src={
-          //   // preview
-          //   //   ? preview
+          //   preview
+          //     ? preview
           //     : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbKtVzu%2Fbtrs71jQHpa%2FuBis0DOrajBQEJMSBeyZY0%2Fimg.jpg"
           // }
         />
-        <Text width="80%" margin="10px" center>
-         <h1>{timer}</h1>
+        
+        <Text width="55%" margin="60px" center>
+        
          <div className="Title" style={{fontSize:"20px", padding:"16px"}}>
            제목: 멍멍이  닉네임(nickname): sojh
          </div>
@@ -82,10 +88,8 @@ const Card = (props) => {
 
         </Text>
       </Grid>
-      <CommentList>
-        
-      </CommentList>
-
+      
+     
   </React.Fragment>
   )
 };

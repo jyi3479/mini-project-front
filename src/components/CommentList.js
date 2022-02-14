@@ -14,7 +14,7 @@ const CommentList = (props) => {
     if (!comment_list[post_id]) {
       dispatch(commentActions.getCommentFB(post_id));
     }
-  }, []);
+  }, [comment_list, dispatch, post_id]);
 
   //post_id를 props로 받아오고 그 post_id도 database에서 가져오므로
   //post_id가 없는 순간이 생기면서 comment_list[post_id]에 아무 것도 없게 된다
@@ -43,5 +43,7 @@ const CommentItem = (props) => {
     </Grid>
   );
 };
+
+CommentList.defaultProps={post_id:0}
 
 export default CommentList;
