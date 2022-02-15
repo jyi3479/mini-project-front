@@ -13,8 +13,8 @@ const initialState = {
   list: [
     {
       id: 0,
-      nickname: "juyeong",
       title: "부산 여행 후기",
+      nickname: "juyeong",
       country: "한국",
       city: "부산",
       evaluation: "아주 좋음",
@@ -27,8 +27,8 @@ const initialState = {
     },
     {
       id: 1,
-      nickname: "juyeong",
       title: "전주 여행 후기",
+      nickname: "juyeong",
       country: "한국",
       city: "전주",
       evaluation: "아주 좋음",
@@ -44,8 +44,8 @@ const initialState = {
 // 게시글 하나에는 어떤 정보가 있어야 하는 지 하나 만들어둡시다! :)
 const initialPost = {
   id: 0,
-  nickname: "juyeong",
   title: "부산 여행 후기",
+  nickname: "juyeong",
   country: "한국",
   city: "부산",
   evaluation: "아주 좋음",

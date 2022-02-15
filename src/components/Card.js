@@ -64,27 +64,12 @@ const Card = (props) => {
         <Image
           half
           shape="big_square"
-          // src={
-          //   preview
-          //     ? preview
-          //     : "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbKtVzu%2Fbtrs71jQHpa%2FuBis0DOrajBQEJMSBeyZY0%2Fimg.jpg"
-          // }
+          // src={image}
         />
         
         <Text width="55%" margin="60px" center>
         
-         <div className="Title" style={{fontSize:"20px", padding:"16px"}}>
-           제목: 멍멍이  닉네임(nickname): sojh
-         </div>
-         <div className="Location" style={{fontSize:"20px", padding:"16px"}}>
-            나라(country)/도시(city): 대한민국/서울 우리집 안방
-         </div>
-         <div className="Evaluation" style={{fontSize:"20px", padding:"16px"}}>
-            평가: 5점/5점
-         </div>
-         <div className="Review" style={{fontSize:"20px", padding:"16px"}}>
-           후기: 밥달라고 한다....
-         </div>
+         
 
         </Text>
       </Grid>

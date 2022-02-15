@@ -18,6 +18,7 @@ const rootReducer = combineReducers({
   post: Post,
   comment: Comment,
   router: connectRouter(history), // 우리가 만든 히스토리랑 router가 연결이 되는 것임.
+  // combineReducers안에 값 넣어줌으로써 reducer들 묶어주는 거임
 });
 
 // #3. 미들웨어 준비

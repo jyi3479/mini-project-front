@@ -28,7 +28,7 @@ Text.defaultProps = {
   bold: false,
   _onClick: () => {},
   is_click: false,
-  width: false,
+  width: "100%",
   center: false,
 };
 
