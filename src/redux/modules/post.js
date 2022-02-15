@@ -86,6 +86,7 @@ const addPostDB = (post_list) => {
       .then((res) => {
         console.log(res);
         dispatch(addPost(post_list));
+        history.push("/");
       })
       .catch((err) => {
         console.log(err);
@@ -107,6 +108,7 @@ const editPostDB = (post_id = null, post = {}) => {
       .then((res) => {
         console.log(res);
         dispatch(editPost(post_id, post));
+        history.push("/");
       })
       .catch((err) => {
         console.log(err);
