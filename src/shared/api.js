@@ -23,10 +23,10 @@ instance.interceptors.request.use(function (config) {
 });
 
 export const userApis = {
-  // 게시물 불러오기
+  // 로그인 요청
   login: (id, pwd) =>
     instance.post("/user/login", { username: id, password: pwd }),
-  // 로그인 요청
+  // 회원가입 요청
   signup: (id, pwd, nickname) =>
     instance.post("/user/signup", {
       username: id,
@@ -46,8 +46,6 @@ export const userApis = {
   //     passwordcheck: pwdcheck,
   //     nickname: nickname,
   //   }),
-
-  // 회원가입 요청
 };
 
 export const postApis = {
@@ -56,9 +54,9 @@ export const postApis = {
   // 게시물 작성하기
   createPost: (content) => instance.post("/post", content),
   // 게시물 수정하기
-  editPost: (id, content) => instance.put(`/posts/${id}`, content),
+  editPost: (id, content) => instance.put(`/post/${id}`, content),
   // 게시물 삭제하기
-  delPost: (id) => instance.delete(`/posts/${id}`),
+  deletePost: (id) => instance.delete(`/post/${id}`),
 };
 
 //   export const commentApis = {

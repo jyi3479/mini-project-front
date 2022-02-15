@@ -1,4 +1,6 @@
 import React from "react";
+import { history } from "../redux/configureStore";
+import { useDispatch } from "react-redux";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -15,7 +17,9 @@ import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-import { Grid } from "../elements";
+import { Button, Grid } from "../elements";
+
+import { actionCreators as postActions } from "../redux/modules/post";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -29,6 +33,7 @@ const ExpandMore = styled((props) => {
 }));
 
 const Post = (props) => {
+  const dispatch = useDispatch();
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -36,6 +41,21 @@ const Post = (props) => {
   };
   return (
     <Card sx={{ margin: 2 }}>
+      <Button
+        _onClick={() => {
+          history.push(`/edit/${props.postId}`);
+        }}
+      >
+        수정
+      </Button>
+      <Button
+        _onClick={() => {
+          dispatch(postActions.deletePostDB(props.postId));
+        }}
+      >
+        삭제
+      </Button>
+
       <CardMedia
         component="img"
         height="194"

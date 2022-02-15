@@ -9,8 +9,11 @@ import Container from "@mui/material/Container";
 import styled from "styled-components";
 
 const PostList = (props) => {
-  const dispatch = useDispatch();
   const post_list = useSelector((state) => state.post.list);
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(postActions.getPostDB());
+  }, []);
   console.log(post_list);
 
   // React.useEffect(() => {
@@ -25,20 +28,6 @@ const PostList = (props) => {
       </Grid>
       <Container sx={{ py: 8 }} maxWidth="md">
         <Grid container spacing={4}>
-          {post_list.map((p, idx) => {
-            return (
-              <Grid xs={12} sm={6} md={4}>
-                <Post key={p.id} {...p} />{" "}
-              </Grid>
-            );
-          })}
-          {post_list.map((p, idx) => {
-            return (
-              <Grid xs={12} sm={6} md={4}>
-                <Post key={p.id} {...p} />{" "}
-              </Grid>
-            );
-          })}
           {post_list.map((p, idx) => {
             return (
               <Grid xs={12} sm={6} md={4}>

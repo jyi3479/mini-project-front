@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import { PostList, Login, Signup, PostWrite } from "../pages";
+import { PostList, Login, Signup, PostWrite, PostEdit } from "../pages";
 import { Header } from "../components";
 import { Grid, Button } from "../elements";
 
@@ -25,7 +25,8 @@ function App() {
           <Route path="/" exact component={PostList} />
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
-          <Route path="/post" exact component={PostWrite} />
+          <Route path="/write" exact component={PostWrite} />
+          <Route path="/edit/:postId" exact component={PostEdit} />
         </ConnectedRouter>
       </Grid>
       {/* {is_login && ( */}
@@ -34,7 +35,7 @@ function App() {
         width="50px"
         is_circle
         _onClick={() => {
-          history.push("/post");
+          history.push("/write");
         }}
       >
         +
