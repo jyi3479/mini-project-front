@@ -90,6 +90,8 @@ const InputField = styled.input`
   border-radius: 3px;
   ${(props) =>
     props.margin ? `margin: ${props.margin};` : `margin-bottom: 20px;`}
+  font-family: inherit; // font 상속
+
   &:focus {
     outline: none;
     border: 2px solid #61b165;
@@ -108,6 +110,7 @@ const TextAreaField = styled.textarea`
   border: 2px solid #acacac;
   border-radius: 3px;
   margin-bottom: 20px;
+  font-family: inherit; // font 상속
   &:focus {
     outline: none;
     border: 2px solid #61b165;

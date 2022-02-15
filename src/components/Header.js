@@ -38,7 +38,7 @@ const Header = (props) => {
               padding="7px"
               bg="#92969a"
               _onClick={() => {
-                dispatch(userActions.logOut({}));
+                dispatch(userActions.logoutAction());
               }}
             >
               로그아웃

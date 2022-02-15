@@ -24,7 +24,7 @@ const Button = (props) => {
 
   if (is_circle) {
     return (
-      <PlusBtn {...styles} onClick={_onClick}>
+      <PlusBtn {...styles} disabled={_disabled} onClick={_onClick}>
         {children}
       </PlusBtn>
     );
@@ -57,6 +57,7 @@ const Btn = styled.button`
   border: none;
   border-radius: 5px;
   color: white;
+  font-family: inherit; // font 상속
 
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
   ${(props) => (props.padding ? `padding: ${props.padding};` : "")};
@@ -75,7 +76,7 @@ const PlusBtn = styled.button`
   box-sizing: border-box;
   width: ${(props) => props.width};
   height: 48px;
-  background-color: ${(props) => (props.disabled ? "#1b9cfc8c" : "#1B9CFC")};
+  background-color: ${(props) => (props.disabled ? "#acacac" : "#ed7928")};
   border: none;
   border-radius: 50%;
   color: white;

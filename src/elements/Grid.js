@@ -13,6 +13,7 @@ const Grid = (props) => {
     _onClick,
     is_main,
     center,
+    is_post,
   } = props;
 
   const styles = {
@@ -24,7 +25,17 @@ const Grid = (props) => {
     relative,
     is_main,
     center,
+    is_post,
   };
+
+  if (is_post) {
+    return (
+      <PostContainer {...styles} onClick={_onClick}>
+        {children}
+      </PostContainer>
+    );
+  }
+
   return (
     <GridContainer {...styles} onClick={_onClick}>
       {children}
@@ -59,4 +70,17 @@ const GridContainer = styled.div`
   ${(props) => (props.relative ? `position: relative;` : "")};
   ${(props) => (props.center ? `text-align: center;` : "")}
 `;
+
+const PostContainer = styled.div`
+  width: ${(props) => props.width};
+  height: 100%;
+
+  box-sizing: border-box;
+  ${(props) => (props.is_flex ? `display: flex;` : "")};
+  ${(props) => (props.padding ? `padding: ${props.padding};` : "")};
+  ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
+  ${(props) => (props.bg ? `background-color: ${props.bg};` : "")};
+  ${(props) => (props.center ? `text-align: center;` : "")}
+`;
+
 export default Grid;

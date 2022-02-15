@@ -20,7 +20,7 @@ const Login = (props) => {
       return;
     }
     console.log(id, pwd);
-    dispatch(userActions.logIn(id, pwd));
+    dispatch(userActions.loginDB(id, pwd));
   };
 
   return (
@@ -61,7 +61,6 @@ const Login = (props) => {
             margin="30px auto"
             _onClick={() => {
               login();
-              history.push("/");
             }}
             _disabled={id === "" || pwd === "" ? true : false}
           >

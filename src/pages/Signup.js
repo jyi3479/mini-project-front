@@ -1,12 +1,12 @@
 import React from "react";
 import { Title, Text, Input, Grid, Button } from "../elements";
 
-// import { useDispatch } from "react-redux";
-// import { actionCreators as userActions } from "../redux/modules/user";
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 import { emailCheck } from "../shared/check";
 
 const Signup = (props) => {
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const [id, setId] = React.useState("");
   const [pwd, setPwd] = React.useState("");
@@ -20,12 +20,12 @@ const Signup = (props) => {
       return;
     }
     // 비밀번호 체크
-    if (pwd !== pwd_check) {
-      window.alert("패스워드와 패스워드 확인이 일치하지 않습니다!");
-      return;
-    }
+    // if (pwd !== pwd_check) {
+    //   window.alert("패스워드와 패스워드 확인이 일치하지 않습니다!");
+    //   return;
+    // }
 
-    // dispatch(userActions.signupFB(id, pwd, user_name));
+    dispatch(userActions.signupDB(id, pwd, user_name));
   };
   return (
     <Grid is_flex>
@@ -35,7 +35,7 @@ const Signup = (props) => {
             회원가입
           </Text>
         </Grid>
-        <Grid>
+        <Grid is_flex>
           <Input
             label="아이디"
             placeholder="아이디를 입력해주세요"
@@ -44,8 +44,11 @@ const Signup = (props) => {
               setId(e.target.value);
             }}
           />
+          <Button width="10vw" _disabled={id === "" ? true : false}>
+            중복확인
+          </Button>
         </Grid>
-        <Grid>
+        <Grid is_flex>
           <Input
             label="닉네임"
             placeholder="닉네임를 입력해주세요"
@@ -54,6 +57,9 @@ const Signup = (props) => {
               setUserName(e.target.value);
             }}
           />
+          <Button width="10vw" _disabled={user_name === "" ? true : false}>
+            중복확인
+          </Button>
         </Grid>
         <Grid>
           <Input
@@ -66,7 +72,7 @@ const Signup = (props) => {
             }}
           />
         </Grid>
-        <Grid>
+        {/* <Grid>
           <Input
             label="비밀번호 확인"
             placeholder="비밀번호를 다시 입력해주세요"
@@ -76,7 +82,7 @@ const Signup = (props) => {
               setPwdCheck(e.target.value);
             }}
           />
-        </Grid>
+        </Grid> */}
         <Grid is_flex>
           <Button
             width="20vw"
@@ -85,9 +91,7 @@ const Signup = (props) => {
               signup();
             }}
             _disabled={
-              id === "" || pwd === "" || user_name === "" || pwd_check === ""
-                ? true
-                : false
+              id === "" || pwd === "" || user_name === "" ? true : false
             }
           >
             회원가입하기
