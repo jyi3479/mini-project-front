@@ -13,9 +13,9 @@ const PostList = (props) => {
   const post_list = useSelector((state) => state.post.list);
   console.log(post_list);
 
-  React.useEffect(() => {
-    dispatch(postActions.getPostDB());
-  }, []);
+  // React.useEffect(() => {
+  //   dispatch(postActions.getPostDB());
+  // }, []);
 
   return (
     <Grid>

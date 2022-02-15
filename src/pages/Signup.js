@@ -20,12 +20,12 @@ const Signup = (props) => {
       return;
     }
     // 비밀번호 체크
-    if (pwd !== pwd_check) {
-      window.alert("패스워드와 패스워드 확인이 일치하지 않습니다!");
-      return;
-    }
+    // if (pwd !== pwd_check) {
+    //   window.alert("패스워드와 패스워드 확인이 일치하지 않습니다!");
+    //   return;
+    // }
 
-    dispatch(userActions.signupDB(id, pwd, pwd_check, user_name));
+    dispatch(userActions.signupDB(id, pwd, user_name));
   };
   return (
     <Grid is_flex>
@@ -72,7 +72,7 @@ const Signup = (props) => {
             }}
           />
         </Grid>
-        <Grid>
+        {/* <Grid>
           <Input
             label="비밀번호 확인"
             placeholder="비밀번호를 다시 입력해주세요"
@@ -82,7 +82,7 @@ const Signup = (props) => {
               setPwdCheck(e.target.value);
             }}
           />
-        </Grid>
+        </Grid> */}
         <Grid is_flex>
           <Button
             width="20vw"
@@ -91,9 +91,7 @@ const Signup = (props) => {
               signup();
             }}
             _disabled={
-              id === "" || pwd === "" || user_name === "" || pwd_check === ""
-                ? true
-                : false
+              id === "" || pwd === "" || user_name === "" ? true : false
             }
           >
             회원가입하기

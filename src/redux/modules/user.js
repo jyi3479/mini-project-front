@@ -6,6 +6,7 @@ import { userApis } from "../../shared/api";
 import { setAuth } from "../../shared/setAuth";
 
 import { setCookie, getCookie, deleteCookie } from "../../shared/Cookie";
+import { responseInterceptor } from "http-proxy-middleware";
 
 // actions
 const LOG_OUT = "LOG_OUT";
@@ -21,29 +22,29 @@ const initialState = {
   is_login: false,
 };
 
-const kakaoLogin = (code) => {
-  return function (dispatch, getState, { history }) {
-    axios({
-      method: "GET",
-      url: `http://3.35.208.142/oauth/callback/kakao?code=${code}`,
-      accept: "text/html",
-    })
-      .then((res) => {
-        console.log(res); // 토큰이 넘어올 것임
+// const kakaoLogin = (code) => {
+//   return function (dispatch, getState, { history }) {
+//     axios
+//       .get(`http://13.125.207.144:8080/oauth/callback/kakao?code=${code}`, {
+//         withCredentials: true,
+//       })
 
-        const ACCESS_TOKEN = res.data.accessToken;
+//       .then((res) => {
+//         console.log(res); // 토큰이 넘어올 것임
 
-        localStorage.setItem("token", ACCESS_TOKEN); //예시로 로컬에 저장함
+//         // const ACCESS_TOKEN = res.data.accessToken;
 
-        history.replace("/"); // 토큰 받았았고 로그인됐으니 화면 전환시켜줌(메인으로)
-      })
-      .catch((err) => {
-        console.log("소셜로그인 에러", err);
-        window.alert("로그인에 실패하였습니다.");
-        history.replace("/login"); // 로그인 실패하면 로그인화면으로 돌려보냄
-      });
-  };
-};
+//         // localStorage.setItem("token", ACCESS_TOKEN); //예시로 로컬에 저장함
+
+//         // history.replace("/"); // 토큰 받았았고 로그인됐으니 화면 전환시켜줌(메인으로)
+//       })
+//       .catch((err) => {
+//         console.log("소셜로그인 에러", err);
+//         window.alert("로그인에 실패하였습니다.");
+//         history.replace("/login"); // 로그인 실패하면 로그인화면으로 돌려보냄
+//       });
+//   };
+// };
 
 // middleware actions
 // 내가 따로 쿠키 저장하는 함수
@@ -57,66 +58,44 @@ const loginAction = (user) => {
 
 const loginDB = (id, pwd) => {
   return function (dispatch, getState, { history }) {
-    // const params = new URLSearchParams();
-    // params.append("username", id);
-    // params.append("password", pwd);
-
-    const params = new URLSearchParams();
-    params.append("username", id);
-    params.append("password", pwd);
-
-    axios
-      .post("/user/login", params, {
-        withCredentials: true,
-        headers: {
-          "content-type": "application/x-www-form-urlencoded;charset=UTF-8",
-        },
-      })
+    userApis
+      .login(id, pwd)
       .then((res) => {
         console.log(res);
-      })
-      .catch((err) => console.log(err));
+        // setCookie("token", res.headers["authorization"], 1);
+        // const token = res.headers["authorization"];
+        // localStorage.setItem("authorization", token);
+        // dispatch(setUser({ token: id }));
 
-    // userApis
-    //   .login(params)
-    //   .then((res) => {
-    //     console.log("post response", res);
-    //     // console.log(res.headers.get("set-cookie"));
-    //     // const token = res.headers["authorization"];
-    //     // setCookie("is_login", `${token}`);
-    //     // // setAuth(token);
-    //     // document.location.href = "/";
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+        // userApis
+        //   .userInfo(res.headers["authorization"])
+        //   .then((res) =>
+        //     dispatch(
+        //       setUser({
+        //         email: res.data.username,
+        //         nickname: res.data.nickname,
+        //         token: token,
+        //       })
+        //     )
+        //   )
+        //   .catch((error) => console.log(error));
+        history.push("/");
+        // dispatch(userInfo(res.headers["authorization"], id, pwd));
+      })
+      .catch((error) => alert("회원정보가 일치하지 않습니다."));
+    // apis
+    //   .login(id, pwd)
+    //   .then((res) => console.log(res))
+    //   .catch((error) => console.log(error));
   };
 };
 
-const signupDB = (id, pwd, pwdcheck, nickname) => {
+const signupDB = (id, pwd, nickname) => {
   return function (dispatch, getState, { history }) {
-    const params = new URLSearchParams();
-    params.append("username", id);
-    params.append("password", pwd);
-    params.append("passwordcheck", pwdcheck);
-    params.append("nickname", nickname);
-
-    axios
-      .post("/user/signup", params, {
-        withCredentials: true,
-        headers: {
-          "content-type": "application/x-www-form-urlencoded;charset=UTF-8",
-        },
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => console.log(err));
-
-    // userApis
-    //   .signup(id, pwd, pwdcheck, nickname)
-    //   .then((res) => console.log(res, "회원가입 성공"))
-    //   .catch((error) => console.log(error));
+    userApis
+      .signup(id, pwd, nickname)
+      .then((res) => console.log(res, "회원가입 성공"))
+      .catch((error) => console.log(error));
   };
 };
 
@@ -148,6 +127,5 @@ const actionCreators = {
   loginAction,
   loginDB,
   signupDB,
-  kakaoLogin,
 };
 export { actionCreators };
