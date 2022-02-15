@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Grid, Input, Button } from "../elements";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { actionCreators as commentActions } from "../redux/modules/comment";
 
 const CommentWrite = (props) => {
@@ -15,7 +15,7 @@ const CommentWrite = (props) => {
   };
 
   const addComment = () => {
-    dispatch(commentActions.addCommentFB(post_id, comment));
+    dispatch(commentActions.addComment(post_id, comment));
     setComment("");
   };
   return (

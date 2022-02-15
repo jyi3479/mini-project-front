@@ -24,10 +24,10 @@ const initialState = {
   list: {},
 };
 
-//middleware
+// middleware
 // const addCommentFB = (post_id, comment) => {
 //   return function (dispatch, getState, { history }) {
-//     // const commentDB = firestore.collection("comment");
+//     const commentDB = firestore.collection("comment");
 
 //     const user_info = getState().user.user;
 
@@ -40,14 +40,14 @@ const initialState = {
 //       insert_dt: moment().format("YYYY-MM-DD hh:mm:ss"),
 //     };
 
-//     // commentDB.add(new_comment).then((doc) => {
-//     //   const postDB = firestore.collection("post");
+//     commentDB.add(new_comment).then((doc) => {
+//       const postDB = firestore.collection("post");
 
-//     //   const post = getState().post.list.find((p) => p.id === post_id);
+//       const post = getState().post.list.find((p) => p.id === post_id);
 
-//     //   const increment = firebase.firestore.FieldValue.increment(1);
+//       const increment = firebase.firestore.FieldValue.increment(1);
 
-//     //   new_comment = { ...new_comment, id: doc.id };
+//       new_comment = { ...new_comment, id: doc.id };
 
 //       postDB
 //         .doc(post_id)
@@ -89,13 +89,13 @@ const initialState = {
 //   };
 // };
 
-const getCommentFB = (post_id) => {
-  return function (dispatch, getState, { history }) {
-    if (!post_id) {
-      return;
-    }
+// const getCommentFB = (post_id) => {
+//   return function (dispatch, getState, { history }) {
+//     if (!post_id) {
+//       return;
+//     }
 
-    // const commentDB = firestore.collection("comment");
+//     const commentDB = firestore.collection("comment");
 
 //     commentDB
 //       .where("post_id", "==", post_id)
@@ -111,8 +111,8 @@ const getCommentFB = (post_id) => {
 //       .catch((error) => {
 //         console.log("댓글 정보를 가지고 올수가 없어요ㅠㅠ", error);
 //       });
-  };
-};
+//   };
+// };
 
 //reducer
 export default handleActions(
@@ -132,7 +132,7 @@ export default handleActions(
 const actionCreators = {
   setComment,
   addComment,
-  getCommentFB,
+  // getCommentFB,
   // addCommentFB,
 };
 

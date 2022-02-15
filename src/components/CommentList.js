@@ -1,20 +1,20 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Grid, Image, Text } from "../elements";
 
-import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as commentActions } from "../redux/modules/comment";
+import { useSelector } from "react-redux";
+// import { actionCreators as commentActions } from "../redux/modules/comment";
 
 const CommentList = (props) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const comment_list = useSelector((state) => state.comment.list);
 
   const { post_id } = props;
 
-  useEffect(() => {
-    if (!comment_list[post_id]) {
-      dispatch(commentActions.getCommentFB(post_id));
-    }
-  }, [comment_list, dispatch, post_id]);
+  // useEffect(() => {
+  //   if (!comment_list[post_id]) {
+  //     dispatch(commentActions.getCommentFB(post_id));
+  //   }
+  // }, [comment_list, dispatch, post_id]);
 
   //post_id를 props로 받아오고 그 post_id도 database에서 가져오므로
   //post_id가 없는 순간이 생기면서 comment_list[post_id]에 아무 것도 없게 된다
