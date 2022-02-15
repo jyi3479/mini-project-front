@@ -67,6 +67,17 @@ const Login = (props) => {
             로그인하기
           </Button>
         </Grid>
+        <Grid is_flex>
+          <Button
+            width="20vw"
+            margin="30px auto"
+            _onClick={() => {
+              history.push("/signup");
+            }}
+          >
+            회원가입
+          </Button>
+        </Grid>
       </Grid>
     </Grid>
   );

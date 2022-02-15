@@ -24,10 +24,10 @@ const initialState = {
 // middleware actions
 const loginCheck = () => {
   return function (dispatch, getState, { history }) {
-    const userId = localStorage.getItem("email");
+    const userId = localStorage.getItem("username");
     const tokenCheck = document.cookie;
     if (tokenCheck) {
-      dispatch(setUser({ email: userId }));
+      dispatch(setUser({ username: userId }));
     } else {
       dispatch(logOut());
     }

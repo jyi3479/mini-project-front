@@ -1,6 +1,6 @@
 import { create } from "@mui/material/styles/createTransitions";
 import axios from "axios";
-import { getCookie } from "./Cookie";
+import { setCookie, getCookie, deleteCookie } from "./Cookie";
 
 const tokenCheck = document.cookie;
 const token = tokenCheck.split("=")[1];
@@ -17,7 +17,8 @@ const instance = axios.create({
 
 instance.interceptors.request.use(function (config) {
   const accessToken = document.cookie.split("=")[1];
-  config.headers.common["authorization"] = `BEARER ${accessToken}`;
+  config.headers.common["X-AUTH-TOKEN"] = `${accessToken}`;
+  // config.headers.common["authorization"] = `${accessToken}`;
   return config;
 });
 
@@ -33,10 +34,11 @@ export const userApis = {
       // passwordcheck: pwdcheck,
       nickname: nickname,
     }),
-  userInfo: (token) =>
-    instance.post(`/user/userinfo`, {
-      authorization: token,
-    }),
+  userInfo: () => instance.get(`/user/userinfo`),
+  // userInfo: (token) =>
+  //   instance.post(`/user/userinfo`, {
+  //     authorization: token,
+  //   }),
   // signup: (id, pwd, pwdcheck, nickname) =>
   //   instance.post("/user/signup", {
   //     username: id,

@@ -5,6 +5,7 @@ import { Header } from "../components";
 import { Grid, Button } from "../elements";
 
 import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 import { BrowserRouter, Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
@@ -12,6 +13,10 @@ import { history } from "../redux/configureStore";
 
 function App() {
   // const is_login = useSelector((state) => state.user.is_login);
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    if (document.cookie) dispatch(userActions.loginCheck());
+  }, []);
   return (
     <div className="App">
       <Grid padding="10px 30px">
