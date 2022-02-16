@@ -13,8 +13,8 @@ const initialState = {
   list: [
     {
       id: 0,
-      title: "부산 여행 후기",
       nickname: "juyeong",
+      title: "부산 여행 후기",
       country: "한국",
       city: "부산",
       evaluation: "아주 좋음",
@@ -27,8 +27,8 @@ const initialState = {
     },
     {
       id: 1,
-      title: "전주 여행 후기",
       nickname: "juyeong",
+      title: "전주 여행 후기",
       country: "한국",
       city: "전주",
       evaluation: "아주 좋음",
@@ -43,11 +43,9 @@ const initialState = {
 };
 // 게시글 하나에는 어떤 정보가 있어야 하는 지 하나 만들어둡시다! :)
 // const initialPost = {
-//   list: [
-//   {
 //   id: 0,
-//   title: "부산 여행 후기",
 //   nickname: "juyeong",
+//   title: "부산 여행 후기",
 //   country: "한국",
 //   city: "부산",
 //   evaluation: "아주 좋음",
@@ -57,8 +55,6 @@ const initialState = {
 //   comment_cnt: 10,
 //   like_cnt: 2,
 //   insert_dt: "2021-02-27 10:00:00",
-//   },
-// ],
 // };
 
 // reducer
@@ -66,9 +62,8 @@ export default handleActions(
   {
     [SET_POST]: (state, action) => produce(state, (draft) => {}),
     [ADD_POST]: (state, action) => produce(state, (draft) => {}),
-  },  
+  },
   initialState
-  // 
 );
 
 // action creator export

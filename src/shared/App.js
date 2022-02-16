@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import { PostList, Login, Signup, PostDetail } from "../pages";
+import { PostList, Login, Signup, MyPage } from "../pages";
 import { Header } from "../components";
 
 import { Route } from "react-router-dom";
@@ -15,7 +15,7 @@ function App() {
         <Route path="/" exact component={PostList} />
         <Route path="/login" exact component={Login} />
         <Route path="/signup" exact component={Signup} />
-        <Route path="/detail/:index" exact component={PostDetail} />
+        <Route path="/mypage" exact component={MyPage}/>
       </ConnectedRouter>
     </div>
   );
