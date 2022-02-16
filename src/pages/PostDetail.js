@@ -35,8 +35,7 @@ const PostDetail = (props) => {
         <Card
           {...post}
           is_me={post.nickname === login_user ? true : false}
-          is_like={post.islike}
-          like_cnt={post.likeCnt}
+          post_id={post_index}
         />
       )}
 

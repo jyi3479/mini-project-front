@@ -9,7 +9,7 @@ const Header = (props) => {
   const dispatch = useDispatch();
   const is_login = useSelector((state) => state.user.is_login);
   console.log(is_login);
-  if (is_login) {
+  if (document.cookie) {
     return (
       <React.Fragment>
         <Grid is_flex padding="5px 16px 50px 16px">

@@ -20,6 +20,8 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Button, Grid, Like } from "../elements";
 
 import { actionCreators as postActions } from "../redux/modules/post";
+import { likeApis, postApis } from "../shared/api";
+import Permit from "../shared/Permit";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -35,6 +37,23 @@ const ExpandMore = styled((props) => {
 const Post = (props) => {
   const dispatch = useDispatch();
   const [expanded, setExpanded] = React.useState(false);
+  const [is_like, setIsLike] = React.useState(false);
+  const [like_cnt, setLikeCnt] = React.useState(0);
+
+  const likeCheck = async () => {
+    const res = await likeApis.clickLike(props.postId);
+    console.log(res.data);
+    setIsLike(!is_like);
+    setLikeCnt(res.data.likeCnt);
+  };
+
+  React.useEffect(async () => {
+    const res = await postApis.detailPost(props.postId);
+    setLikeCnt(res.data.getResponseDto.likeCnt);
+    if (res.data.getResponseDto.islike === true) {
+      setIsLike(true);
+    }
+  }, []);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -95,14 +114,17 @@ const Post = (props) => {
       >
         <CardContent>
           <Typography variant="body2" style={{ fontFamily: "inherit" }}>
-            댓글 {props.commentCnt} &nbsp; 좋아요 {props.likeCnt}
+            댓글 {props.commentCnt} &nbsp; 좋아요 {like_cnt}
           </Typography>
         </CardContent>
-
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        {/* <Like /> */}
+        <Permit>
+          <FavoriteIcon
+            onClick={likeCheck}
+            style={{
+              color: is_like ? "pink" : "grey",
+            }}
+          />
+        </Permit>
       </CardActions>
     </Card>
   );

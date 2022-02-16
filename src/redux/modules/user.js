@@ -17,13 +17,19 @@ const getUser = createAction(GET_USER, (user) => ({ user }));
 const setUser = createAction(SET_USER, (user) => ({ user }));
 
 const initialState = {
-  user: null,
-  is_login: false,
+  // user: null,
+  // is_login: false,
 };
 
 // middleware actions
 const loginCheck = () => {
   return function (dispatch, getState, { history }) {
+    const _nickname = localStorage.getItem("nickname");
+    // dispatch(
+    //   setUser({
+    //     nickname: _nickname,
+    //   })
+    // );
     userApis
       .userInfo()
       .then((res) => {
@@ -78,14 +84,17 @@ const logoutAction = () => {
     deleteCookie("token");
     localStorage.removeItem("nickname");
     dispatch(logOut());
-    history.push("/login");
+    history.replace("/login");
   };
 };
 
 const signupDB = (id, pwd, nickname) => {
   return function (dispatch, getState, { history }) {
+    // const _image = getState().image.preview;
+    const _image =
+      "https://myimagestorage.s3.ap-northeast-2.amazonaws.com/5d9ecbd820dfd2738de6.jpg";
     userApis
-      .signup(id, pwd, nickname)
+      .signup(id, pwd, nickname, _image)
       .then((res) => console.log(res, "회원가입 성공"))
       .catch((error) => console.log(error));
     history.push("/login");

@@ -15,7 +15,7 @@ const setPost = createAction(SET_POST, (post_list) => ({ post_list }));
 const setDetail = createAction(SET_DETAIL, (target_list) => ({ target_list }));
 
 const addPost = createAction(ADD_POST, (post) => ({ post }));
-const editPost = createAction(EDIT_POST, (post, post_Id) => ({
+const editPost = createAction(EDIT_POST, (post_Id, post) => ({
   post,
   post_Id,
 }));
@@ -92,7 +92,7 @@ const getDetailDB = (id) => {
   };
 };
 
-const addPostDB = (title, country, city, evaluation, contents) => {
+const addPostDB = (title, country, city, evaluation, content) => {
   return function (dispatch, getState, { history }) {
     const _image = getState().image.preview;
     console.log(_image);
@@ -103,7 +103,7 @@ const addPostDB = (title, country, city, evaluation, contents) => {
       country: country,
       city: city,
       evaluation: evaluation,
-      content: contents,
+      content: content,
     };
     console.log(temp_list);
 
@@ -121,19 +121,36 @@ const addPostDB = (title, country, city, evaluation, contents) => {
   };
 };
 
-const editPostDB = (post_id = null, post = {}) => {
+const editPostDB = (
+  post_id = null,
+  title,
+  country,
+  city,
+  evaluation,
+  content
+) => {
   return function (dispatch, getState, { history }) {
     if (!post_id) {
       console.log("게시물 정보가 없어요!");
       alert("게시물 정보가 없어요!");
       return;
     }
-    console.log(post_id, post);
+    const _image = getState().image.preview;
+    const temp_list = {
+      nickname: getState().user.user.nickname,
+      imgUrl: _image,
+      title: title,
+      country: country,
+      city: city,
+      evaluation: evaluation,
+      content: content,
+    };
+    console.log(post_id, temp_list);
     postApis
-      .editPost(post_id, post)
+      .editPost(post_id, temp_list)
       .then((res) => {
         console.log(res);
-        dispatch(editPost(post_id, post));
+        dispatch(editPost(post_id, temp_list));
         history.push("/");
       })
       .catch((err) => {
@@ -208,6 +225,7 @@ export default handleActions(
       }),
     [EDIT_POST]: (state, action) =>
       produce(state, (draft) => {
+        console.log(action.payload.post_id);
         let idx = draft.list.findIndex(
           (p) => p.postId === action.payload.post_id
         );
@@ -228,6 +246,7 @@ export default handleActions(
 const actionCreators = {
   setPost,
   addPost,
+  editPost,
   getPostDB,
   addPostDB,
   editPostDB,

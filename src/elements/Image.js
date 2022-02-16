@@ -38,6 +38,7 @@ const CircleImage = styled.img`
   min-height: var(--size);
   background-image: url(${(props) => props.src});
   background-size: cover;
+  background-position: center;
   border-radius: 50%;
   margin: 10px 0;
 `;
@@ -48,6 +49,7 @@ const BigSquareImage = styled.img`
   min-width: 250px;
   background-image: url(${(props) => props.src});
   background-size: cover;
+  background-position: center;
   margin: 10px 0;
   @media (max-width: 280px) {
     min-width: 150px;
@@ -65,6 +67,7 @@ const SmallSquareImage = styled.div`
   min-height: var(--size);
   background-image: url("${(props) => props.src}");
   background-size: cover;
+  background-position: center;
   margin: 10px 0;
 `;
 

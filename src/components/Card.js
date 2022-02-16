@@ -7,33 +7,30 @@ import { actionCreators as likeActions } from "../redux/modules/like";
 import { actionCreators as postActions } from "../redux/modules/post";
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { likeApis, postApis } from "../shared/api";
 // import { useSelector } from "react-redux";
 // import "moment/locale/ko"; //백엔드에서 날짜를 주기 때문에 안써도 될 것 같습니다!
 // const [layout, setLayout] = useState(_post ? _post.layout : "bottom");
 
 const Card = (props) => {
-  const { is_like, is_me, like_cnt } = props;
-  console.log(like_cnt);
   const dispatch = useDispatch();
-  // const like_info = useSelector((state) => state.like.list)[0];
-  // console.log(like_info);
-  // console.log(props.is_me);
+  const [is_like, setIsLike] = React.useState(false);
+  const [like_cnt, setLikeCnt] = React.useState(0);
 
-  const target_list = useSelector((state) => state.post.target);
-  const user_info = useSelector((state) => state.user.user); // 접속자 id
-  // console.log(post_list[parseInt(post_id)]);
-  // const [isLike, setIsLike] = React.useState(is_like);
-  // const [likeCnt, setLikeCnt] = React.useState(like_cnt);
-  console.log(target_list.islike);
-  const likeCheck = () => {
-    dispatch(likeActions.likeDB(props.postId, user_info.nickname));
-    // setIsLike(!isLike);
-    // setLikeCnt(!likeCnt);
+  const likeCheck = async () => {
+    const res = await likeApis.clickLike(props.post_id);
+    console.log(res.data);
+    setIsLike(!is_like);
+    setLikeCnt(res.data.likeCnt);
   };
 
-  // React.useEffect(() => {
-  //   dispatch(postActions.getDetailDB(props.postId));
-  // }, [is_like]);
+  React.useEffect(async () => {
+    const res = await postApis.detailPost(props.post_id);
+    setLikeCnt(res.data.getResponseDto.likeCnt);
+    if (res.data.getResponseDto.islike === true) {
+      setIsLike(true);
+    }
+  }, []);
 
   return (
     <React.Fragment>
@@ -97,12 +94,15 @@ const Card = (props) => {
         </Grid>
         <Grid padding="16px" is_flex>
           <Text margin="0px" bold color="#66696d">
-            댓글 {props.commentCnt}개 &nbsp; &nbsp; 좋아요 {like_cnt}개
+            댓글 {props.commentCnt}개 &nbsp; &nbsp; 좋아요
+            {like_cnt}개
           </Text>
           <Permit>
             <FavoriteIcon
               onClick={likeCheck}
-              style={{ color: is_like ? "pink" : "grey" }}
+              style={{
+                color: is_like ? "pink" : "grey",
+              }}
             />
           </Permit>
         </Grid>

@@ -27,8 +27,9 @@ export const userApis = {
   login: (id, pwd) =>
     instance.post("/user/login", { username: id, password: pwd }),
   // 회원가입 요청
-  signup: (id, pwd, nickname) =>
+  signup: (id, pwd, nickname, profile) =>
     instance.post("/user/signup", {
+      user_profile: profile,
       username: id,
       password: pwd,
       // passwordcheck: pwdcheck,

@@ -11,10 +11,10 @@ const setLike = createAction(SET_LIKE, (like_data) => ({
 
 const initialState = {
   list: {
-    postId: 0,
-    nickname: "juyeong",
-    likeCnt: 2,
-    islike: false,
+    // postId: 0,
+    // nickname: "juyeong",
+    // likeCnt: 2,
+    // islike: false,
   },
 };
 

@@ -7,11 +7,10 @@ import { actionCreators as commentActions } from "../redux/modules/comment";
 import { actionCreators as userActions } from "../redux/modules/user";
 
 const CommentList = (props) => {
+  const { post_id } = props;
   const dispatch = useDispatch();
 
   const comment_list = useSelector((state) => state.comment.list);
-  console.log(comment_list);
-  const { post_id } = props;
 
   React.useEffect(() => {
     dispatch(commentActions.getCommentDB(parseInt(post_id)));
@@ -30,14 +29,24 @@ const CommentList = (props) => {
 
 const CommentItem = (props) => {
   const dispatch = useDispatch();
-  const { postId, commentId, username, nickname, comment, commentDate } = props;
+  const login_user = localStorage.getItem("nickname");
+
+  const {
+    postId,
+    commentId,
+    username,
+    nickname,
+    comment,
+    commentDate,
+    userProfile,
+  } = props;
   const deleteComment = () => {
     dispatch(commentActions.deleteCommentDB(parseInt(commentId)));
   };
   return (
     <Grid is_flex>
       <Grid is_flex width="auto">
-        <Image shape="circle" />
+        <Image shape="circle" src={userProfile} />
         <Text margin="5px" bold>
           {nickname}
         </Text>
@@ -46,10 +55,14 @@ const CommentItem = (props) => {
         <Text margin="0px">{comment}</Text>
         <Grid is_flex width="auto">
           <Text margin="5px">{commentDate}</Text>
-          <CommentEdit comment_id={commentId} post_id={postId} />
-          <span style={{ margin: "5px" }} onClick={deleteComment}>
-            삭제
-          </span>
+          {nickname === login_user && (
+            <CommentEdit comment_id={commentId} post_id={postId} />
+          )}
+          {nickname === login_user && (
+            <span style={{ margin: "5px" }} onClick={deleteComment}>
+              삭제
+            </span>
+          )}
         </Grid>
       </Grid>
     </Grid>

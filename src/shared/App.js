@@ -17,12 +17,15 @@ import { actionCreators as userActions } from "../redux/modules/user";
 import { BrowserRouter, Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
+import Permit from "./Permit";
 
 function App() {
   // const is_login = useSelector((state) => state.user.is_login);
   const dispatch = useDispatch();
   React.useEffect(() => {
-    if (document.cookie) dispatch(userActions.loginCheck());
+    if (document.cookie) {
+      dispatch(userActions.loginCheck());
+    }
   }, []);
   return (
     <div className="App">
@@ -37,18 +40,18 @@ function App() {
           <Route path="/edit/:postId" exact component={PostEdit} />
         </ConnectedRouter>
       </Grid>
-      {/* {is_login && ( */}
-      <Button
-        font_size="30px"
-        width="50px"
-        is_circle
-        _onClick={() => {
-          history.push("/write");
-        }}
-      >
-        +
-      </Button>
-      {/* )} */}
+      <Permit>
+        <Button
+          font_size="30px"
+          width="50px"
+          is_circle
+          _onClick={() => {
+            history.push("/write");
+          }}
+        >
+          +
+        </Button>
+      </Permit>
     </div>
   );
 }

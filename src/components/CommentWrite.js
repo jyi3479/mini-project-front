@@ -12,12 +12,14 @@ const CommentWrite = (props) => {
   const { post_id } = props;
 
   const addComment = () => {
-    const comment_list = {
-      // nickname: user_info.nickname,
-      comment: comment,
-    };
-    console.log(post_id, comment_list);
-    dispatch(commentActions.addCommentDB(parseInt(post_id), comment_list));
+    console.log(post_id, user_info.nickname, comment);
+    dispatch(
+      commentActions.addCommentDB(
+        parseInt(post_id),
+        user_info.nickname,
+        comment
+      )
+    );
     setComment(""); // set 지워지니까 input의 value도 없어짐
   };
 

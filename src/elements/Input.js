@@ -8,6 +8,7 @@ const Input = (props) => {
     type,
     placeholder,
     value,
+    defaultValue,
     _onChange,
     is_submit,
     _onSubmit,
@@ -25,6 +26,7 @@ const Input = (props) => {
         <InputField
           type={type}
           value={value}
+          defaultValue={defaultValue}
           placeholder={placeholder}
           onChange={_onChange}
           onKeyPress={(e) => {
@@ -73,6 +75,7 @@ Input.defaultProps = {
   type: "text",
   placeholder: "입력해주세용!",
   value: "",
+  defaultValue: "",
   is_submit: false,
   is_upload: false,
   _onChange: () => {},

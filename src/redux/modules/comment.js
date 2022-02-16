@@ -1,10 +1,12 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
+import moment from "moment";
 import { commentApis } from "../../shared/api";
+import { useSelector } from "react-redux";
 // import firebase from "firebase/app";
 // import { firestore, realtime } from "../../shared/firebase";
 // import moment from "moment";
-// import { actionCreators as postActions } from "./post";
+import { actionCreators as postActions } from "./post";
 
 //action
 const SET_COMMENT = "SET_COMMENT";
@@ -70,15 +72,35 @@ const getCommentDB = (post_id) => {
   };
 };
 
-const addCommentDB = (post_id, comment) => {
+const addCommentDB = (post_id, nickname, comment) => {
   return function (dispatch, getState, { history }) {
     console.log(post_id, comment);
+    const user_profile = getState().user.user.user_profile;
+    console.log(user_profile);
+    const _comment = {
+      comment: comment,
+    };
+    const comment_data = {
+      userProfile: user_profile,
+      comment: comment,
+      nickname: nickname,
+      commentDate: moment().format("YYYY-MM-DD kk:mm:ss"),
+    };
+    const post = getState().post.list.find(
+      (l) => l.postId === parseInt(post_id)
+    );
+    console.log(post);
     commentApis
-      .createComment(post_id, comment)
+      .createComment(post_id, _comment)
       .then((res) => {
         console.log(res);
-        dispatch(addComment(post_id, comment));
-        // history.push("/");
+        dispatch(addComment(post_id, comment_data));
+
+        // dispatch(
+        //   postActions.editPost(post_id, {
+        //     commentCnt: parseInt(post.commentCnt) + 1,
+        //   })
+        // );
       })
       .catch((err) => {
         console.log(err);

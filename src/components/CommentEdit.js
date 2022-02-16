@@ -21,15 +21,19 @@ const style = {
 };
 
 export default function CommentEdit(props) {
+  const { comment_id, post_id } = props;
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const dispatch = useDispatch();
-  const [comment, setComment] = React.useState("");
-  const user_info = useSelector((state) => state.user.user);
 
-  const { comment_id, post_id } = props;
+  const user_info = useSelector((state) => state.user.user);
+  const target_comment = useSelector((state) => state.comment.list);
+  let _comment = target_comment.find((p) => p.commentId === comment_id);
+  const [comment, setComment] = React.useState(
+    _comment ? _comment.comment : ""
+  );
 
   const editComment = () => {
     const comment_list = {
@@ -40,7 +44,6 @@ export default function CommentEdit(props) {
     dispatch(
       commentActions.editCommentDB(parseInt(comment_id), post_id, comment_list)
     );
-    setComment(""); // set 지워지니까 input의 value도 없어짐
   };
 
   const onChange = (e) => {
@@ -61,14 +64,17 @@ export default function CommentEdit(props) {
             placeholder="댓글 내용을 입력해주세요 :)"
             _onChange={onChange}
             value={comment}
+            defaultValue={comment}
             onSubmit={editComment}
             is_submit
           />
           <Button
             width="50px"
             margin="0px 2px 0px 2px"
-            _onClick={editComment}
-            // _disabled={comment === "" ? true : false}
+            _onClick={() => {
+              editComment();
+              handleClose();
+            }}
           >
             수정
           </Button>
