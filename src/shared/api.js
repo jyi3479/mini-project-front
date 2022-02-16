@@ -69,9 +69,9 @@ export const commentApis = {
     instance.post(`/comment/${post_id}`, comment),
   // 게시물 수정하기
   editComment: (comment_id, comment) =>
-    instance.put(`/posts/${comment_id}`, comment),
+    instance.put(`/comment/${comment_id}`, comment),
   // 게시물 삭제하기
-  deleteComment: (comment_id) => instance.delete(`/post/${comment_id}`),
+  deleteComment: (comment_id) => instance.delete(`/comment/${comment_id}`),
 };
 
 export const likeApis = {

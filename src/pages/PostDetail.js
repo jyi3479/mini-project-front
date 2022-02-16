@@ -4,12 +4,13 @@ import { CommentList, CommentWrite } from "../components";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
+import { actionCreators as userActions } from "../redux/modules/post";
 import Permit from "../shared/Permit";
 
 const PostDetail = (props) => {
   const dispatch = useDispatch();
   const params = useParams();
-  const post_index = params.postId;
+  const post_index = parseInt(params.postId);
   console.log(post_index);
   // const post_list = useSelector((state) => state.post.list);
   // // 상세페이지 조회 이따가 해보기. 서버랑 연결.
@@ -22,14 +23,21 @@ const PostDetail = (props) => {
   const post = useSelector((state) => state.post.target);
   const login_user = localStorage.getItem("nickname");
   console.log(post.nickname, login_user);
+
   React.useEffect(() => {
+    // if (document.cookie) dispatch(userActions.loginCheck());
     dispatch(postActions.getDetailDB(post_index));
   }, []);
 
   return (
     <React.Fragment>
       {post && (
-        <Card {...post} is_me={post.nickname === login_user ? true : false} />
+        <Card
+          {...post}
+          is_me={post.nickname === login_user ? true : false}
+          is_like={post.islike}
+          like_cnt={post.likeCnt}
+        />
       )}
 
       <Permit>

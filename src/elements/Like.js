@@ -1,36 +1,32 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as likeActions } from "../redux/modules/like";
+import { actionCreators as postActions } from "../redux/modules/post";
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const Like = (props) => {
-  const { post_id } = props;
+  let { post_id } = props;
   const dispatch = useDispatch();
-  // const like_list = useSelector((state) => state.like.list);
+  const is_like = useSelector((state) => state.post.target).islike;
   const user_info = useSelector((state) => state.user.user); // 접속자 id
-  const like_info = useSelector((state) => state.like.is_like); // 접속자 id
-  const [is_like, setIsLike] = React.useState(false);
-
+  // console.log(post_list[parseInt(post_id)]);
+  const [isLike, setIsLike] = React.useState(is_like);
+  console.log(is_like);
   const likeCheck = () => {
-    // const likeDB = realtime.ref(`like/${post_id}/${user_id}`);
-    // likeDB.update({ like: true });
     dispatch(likeActions.likeDB(post_id, user_info.nickname));
+    setIsLike(!isLike);
   };
 
   React.useEffect(() => {
-    // const likeDB = realtime.ref(`like/${post_id}/${user_id}`);
-    // likeDB.on("value", (snapshot) => {
-    //   console.log(snapshot.val()?.is_click);
-    //   setIsLike(snapshot.val()?.is_click);
-    // });
-  }, []);
+    dispatch(postActions.getDetailDB(post_id));
+  }, [isLike]);
 
   return (
     <React.Fragment>
       <FavoriteIcon
         onClick={likeCheck}
-        style={{ color: is_like ? "pink" : "grey" }}
+        style={{ color: isLike ? "pink" : "grey" }}
       />
     </React.Fragment>
   );

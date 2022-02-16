@@ -13,11 +13,11 @@ const CommentWrite = (props) => {
 
   const addComment = () => {
     const comment_list = {
-      nickname: user_info.nickname,
+      // nickname: user_info.nickname,
       comment: comment,
     };
-    console.log(comment_list);
-    // dispatch(commentActions.addCommentDB(post_id, comment_lsit));
+    console.log(post_id, comment_list);
+    dispatch(commentActions.addCommentDB(parseInt(post_id), comment_list));
     setComment(""); // set 지워지니까 input의 value도 없어짐
   };
 
@@ -38,7 +38,7 @@ const CommentWrite = (props) => {
         width="50px"
         margin="0px 2px 0px 2px"
         _onClick={addComment}
-        _disabled={comment === "" ? true : false}
+        // _disabled={comment === "" ? true : false}
       >
         작성
       </Button>

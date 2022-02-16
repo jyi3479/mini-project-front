@@ -1,41 +1,68 @@
 import React from "react";
 import { Grid, Image, Text } from "../elements";
+import { CommentEdit } from ".";
 
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as commentActions } from "../redux/modules/comment";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 const CommentList = (props) => {
   const dispatch = useDispatch();
-  const comment_list = useSelector((state) => state.comment.lsit);
 
+  const comment_list = useSelector((state) => state.comment.list);
+  console.log(comment_list);
   const { post_id } = props;
 
-  // React.useEffect(() => {
-  //   dispatch(commentActions.getCommentDB(post_id));
-  // }, []);
+  React.useEffect(() => {
+    dispatch(commentActions.getCommentDB(parseInt(post_id)));
+  }, []);
 
-  return <React.Fragment>댓글 리스트</React.Fragment>;
+  return (
+    <React.Fragment>
+      <Grid padding="16px">
+        {comment_list.map((c) => {
+          return <CommentItem key={c.id} {...c} />;
+        })}
+      </Grid>
+    </React.Fragment>
+  );
 };
 
 const CommentItem = (props) => {
-  // const { user_name, comment, user_profile, insert_dt } = props;
+  const dispatch = useDispatch();
+  const { postId, commentId, username, nickname, comment, commentDate } = props;
+  const deleteComment = () => {
+    dispatch(commentActions.deleteCommentDB(parseInt(commentId)));
+  };
   return (
-    <Grid is_flex padding="16px">
-      {/* <Image shape="circle" src={user_profile} /> */}
-      {/* <Text>{props.nickname}</Text>
-      <Text>{props.comment}</Text>
-      <Text>{props.commentDate}</Text> */}
+    <Grid is_flex>
+      <Grid is_flex width="auto">
+        <Image shape="circle" />
+        <Text margin="5px" bold>
+          {nickname}
+        </Text>
+      </Grid>
+      <Grid is_flex margin="0px 5px">
+        <Text margin="0px">{comment}</Text>
+        <Grid is_flex width="auto">
+          <Text margin="5px">{commentDate}</Text>
+          <CommentEdit comment_id={commentId} post_id={postId} />
+          <span style={{ margin: "5px" }} onClick={deleteComment}>
+            삭제
+          </span>
+        </Grid>
+      </Grid>
     </Grid>
   );
 };
 
 CommentItem.defaultProps = {
-  user_profile: "",
-  user_name: "juyeong",
-  user_id: "",
-  post_id: 1,
-  insert_dt: "2021-01-01 10:00:00",
-  contents: "우와 라이언이다!",
+  postId: 1,
+  commentId: 1,
+  username: "zzz@zzz.com",
+  nickname: "juyeong",
+  comment: "멋있네요~!",
+  commentDate: "2022-01-02",
 };
 
 export default CommentList;

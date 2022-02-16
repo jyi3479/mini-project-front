@@ -5,20 +5,36 @@ import { likeApis, postApis } from "../../shared/api";
 
 const SET_LIKE = "SET_LIKE";
 
-const setLike = createAction(SET_LIKE, (post_id, nickname, is_like) => ({
-  post_id,
-  nickname,
-  is_like,
+const setLike = createAction(SET_LIKE, (like_data) => ({
+  like_data,
 }));
 
-const initialState = {};
+const initialState = {
+  list: {
+    postId: 0,
+    nickname: "juyeong",
+    likeCnt: 2,
+    islike: false,
+  },
+};
 
 const likeDB = (post_id, nickname) => {
   return function (dispatch, getState, { history }) {
+    const nick = {
+      nickname: nickname,
+    };
     likeApis
       .clickLike(post_id)
       .then((res) => {
-        console.log(res.data.postResponseDto);
+        console.log(res.data);
+        const like_res = res.data;
+        const like_data = {
+          postId: post_id,
+          nickname: nickname,
+          likeCnt: like_res.likeCnt,
+          islike: like_res.islike,
+        };
+        dispatch(setLike(like_data));
       })
       .catch((err) => console.log(err));
   };
@@ -26,7 +42,10 @@ const likeDB = (post_id, nickname) => {
 
 export default handleActions(
   {
-    [SET_LIKE]: (state, action) => produce(state, (draft) => {}),
+    [SET_LIKE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.list = action.payload.like_data;
+      }),
   },
   initialState
 );

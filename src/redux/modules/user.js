@@ -24,16 +24,21 @@ const initialState = {
 // middleware actions
 const loginCheck = () => {
   return function (dispatch, getState, { history }) {
-    userApis.userInfo().then((res) => {
-      console.log(res.data);
-      dispatch(
-        setUser({
-          username: res.data.username,
-          nickname: res.data.nickname,
-          user_profile: res.data.user_profile,
-        })
-      );
-    });
+    userApis
+      .userInfo()
+      .then((res) => {
+        console.log(res.data);
+        dispatch(
+          setUser({
+            username: res.data.username,
+            nickname: res.data.nickname,
+            user_profile: res.data.user_profile,
+          })
+        );
+      })
+      .catch((err) => {
+        console.log("유저정보를 가져오지 못했어요");
+      });
   };
 };
 
@@ -71,7 +76,7 @@ const loginDB = (id, pwd) => {
 const logoutAction = () => {
   return function (dispatch, getState, { history }) {
     deleteCookie("token");
-    localStorage.removeItem("username");
+    localStorage.removeItem("nickname");
     dispatch(logOut());
     history.push("/login");
   };

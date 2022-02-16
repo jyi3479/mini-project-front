@@ -7,6 +7,7 @@ import User from "./modules/user";
 import Post from "./modules/post";
 import Comment from "./modules/comment";
 import Like from "./modules/like";
+import Image from "./modules/image";
 
 // ## 스토어에 히스토리 넣어주기 (히스토리 만들어줌) : 이제 스토리에 히스토리도 넣어줄 수 있음.
 
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   post: Post,
   comment: Comment,
   like: Like,
+  image: Image,
   router: connectRouter(history), // 우리가 만든 히스토리랑 router가 연결이 되는 것임.
 });
 

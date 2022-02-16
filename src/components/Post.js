@@ -17,7 +17,7 @@ import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-import { Button, Grid } from "../elements";
+import { Button, Grid, Like } from "../elements";
 
 import { actionCreators as postActions } from "../redux/modules/post";
 
@@ -42,9 +42,9 @@ const Post = (props) => {
   return (
     <Card
       sx={{ margin: 2 }}
-      onClick={() => {
-        history.replace(`detail/${props.postId}`);
-      }}
+      // onClick={() => {
+      //   history.replace(`detail/${props.postId}`);
+      // }}
     >
       {/* <Button
         _onClick={() => {
@@ -60,43 +60,49 @@ const Post = (props) => {
       >
         삭제
       </Button> */}
-
-      <CardMedia
-        component="img"
-        height="194"
-        image={`${props.image_url}`}
-        alt="Paella dish"
-      />
-      <CardHeader
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title={`${props.title}`}
-        subheader={`${props.country}/${props.city}`}
-        titleTypographyProps={{
-          fontFamily: "inherit",
-          fontWeight: "bold",
-          color: "#585353",
+      <Grid
+        _onClick={() => {
+          history.replace(`detail/${props.postId}`);
         }}
-        subheaderTypographyProps={{
-          fontFamily: "inherit",
-        }}
-      />
-
+      >
+        <CardMedia
+          component="img"
+          height="194"
+          image={`${props.imgUrl}`}
+          alt="Paella dish"
+        />
+        <CardHeader
+          action={
+            <IconButton aria-label="settings">
+              <MoreVertIcon />
+            </IconButton>
+          }
+          title={`${props.title}`}
+          subheader={`${props.country}/${props.city}`}
+          titleTypographyProps={{
+            fontFamily: "inherit",
+            fontWeight: "bold",
+            color: "#585353",
+          }}
+          subheaderTypographyProps={{
+            fontFamily: "inherit",
+          }}
+        />
+      </Grid>
       <CardActions
         disableSpacing
         sx={{ display: "flex", justifyContent: "space-between" }}
       >
         <CardContent>
           <Typography variant="body2" style={{ fontFamily: "inherit" }}>
-            댓글 {props.comment_cnt} &nbsp; 좋아요 {props.like_cnt}
+            댓글 {props.commentCnt} &nbsp; 좋아요 {props.likeCnt}
           </Typography>
         </CardContent>
+
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
+        {/* <Like /> */}
       </CardActions>
     </Card>
   );

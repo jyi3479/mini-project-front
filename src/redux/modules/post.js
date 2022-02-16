@@ -92,14 +92,26 @@ const getDetailDB = (id) => {
   };
 };
 
-const addPostDB = (post_list) => {
+const addPostDB = (title, country, city, evaluation, contents) => {
   return function (dispatch, getState, { history }) {
-    console.log(post_list);
+    const _image = getState().image.preview;
+    console.log(_image);
+    const temp_list = {
+      nickname: getState().user.user.nickname,
+      imgUrl: _image,
+      title: title,
+      country: country,
+      city: city,
+      evaluation: evaluation,
+      content: contents,
+    };
+    console.log(temp_list);
+
     postApis
-      .createPost(post_list)
+      .createPost(temp_list)
       .then((res) => {
         console.log(res);
-        dispatch(addPost(post_list));
+        dispatch(addPost(temp_list));
         history.push("/");
       })
       .catch((err) => {
@@ -196,12 +208,16 @@ export default handleActions(
       }),
     [EDIT_POST]: (state, action) =>
       produce(state, (draft) => {
-        let idx = draft.list.findIndex((p) => p.id === action.payload.post_id);
+        let idx = draft.list.findIndex(
+          (p) => p.postId === action.payload.post_id
+        );
         draft.list[idx] = { ...draft.list[idx], ...action.payload.post };
       }),
     [DELETE_POST]: (state, action) =>
       produce(state, (draft) => {
-        let idx = draft.list.findIndex((p) => p.id === action.payload.post_id);
+        let idx = draft.list.findIndex(
+          (p) => p.postId === action.payload.post_id
+        );
         draft.list.splice(idx, 1); //삭제할 게시글의 index를 찾아서 splice로 지운다.
       }),
   },
