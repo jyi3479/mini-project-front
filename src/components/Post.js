@@ -40,21 +40,26 @@ const Post = (props) => {
     setExpanded(!expanded);
   };
   return (
-    <Card sx={{ margin: 2 }}>
-      <Button
+    <Card
+      sx={{ margin: 2 }}
+      onClick={() => {
+        history.replace(`detail/${props.postId}`);
+      }}
+    >
+      {/* <Button
         _onClick={() => {
           history.push(`/edit/${props.postId}`);
         }}
       >
         수정
-      </Button>
-      <Button
+      </Button> */}
+      {/* <Button
         _onClick={() => {
           dispatch(postActions.deletePostDB(props.postId));
         }}
       >
         삭제
-      </Button>
+      </Button> */}
 
       <CardMedia
         component="img"

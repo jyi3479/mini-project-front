@@ -1,6 +1,13 @@
 import "./App.css";
 import React from "react";
-import { PostList, Login, Signup, PostWrite, PostEdit } from "../pages";
+import {
+  PostList,
+  Login,
+  Signup,
+  PostWrite,
+  PostEdit,
+  PostDetail,
+} from "../pages";
 import { Header } from "../components";
 import { Grid, Button } from "../elements";
 
@@ -26,6 +33,7 @@ function App() {
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
           <Route path="/write" exact component={PostWrite} />
+          <Route path="/detail/:postId" exact component={PostDetail} />
           <Route path="/edit/:postId" exact component={PostEdit} />
         </ConnectedRouter>
       </Grid>

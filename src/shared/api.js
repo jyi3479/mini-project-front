@@ -34,7 +34,7 @@ export const userApis = {
       // passwordcheck: pwdcheck,
       nickname: nickname,
     }),
-  userInfo: () => instance.get(`/user/userinfo`),
+  userInfo: () => instance.get(`/user/loginInfo`),
   // userInfo: (token) =>
   //   instance.post(`/user/userinfo`, {
   //     authorization: token,
@@ -51,6 +51,8 @@ export const userApis = {
 export const postApis = {
   // 게시물 불러오기
   getPost: () => instance.get("/post?postType=like"),
+  // 게시글 상세 조회
+  detailPost: (id) => instance.get(`/post/${id}`),
   // 게시물 작성하기
   createPost: (content) => instance.post("/post", content),
   // 게시물 수정하기
@@ -59,16 +61,22 @@ export const postApis = {
   deletePost: (id) => instance.delete(`/post/${id}`),
 };
 
-//   export const commentApis = {
-//     // 게시물 불러오기
-//     getPost: () => instance.get("/posts"),
-//     // 게시물 작성하기
-//     createPost: (contents) => instance.post("/posts", contents),
-//     // 게시물 수정하기
-//     editPost: (id, content) => instance.put(`/posts/${id}`, content),
-//     // 게시물 삭제하기
-//     delPost: (id) => instance.delete(`/posts/${id}`),
-//   };
+export const commentApis = {
+  // 게시물 불러오기
+  getComment: (post_id) => instance.get(`/comment/${post_id}`),
+  // 게시물 작성하기
+  createComment: (post_id, comment) =>
+    instance.post(`/comment/${post_id}`, comment),
+  // 게시물 수정하기
+  editComment: (comment_id, comment) =>
+    instance.put(`/posts/${comment_id}`, comment),
+  // 게시물 삭제하기
+  deleteComment: (comment_id) => instance.delete(`/post/${comment_id}`),
+};
+
+export const likeApis = {
+  clickLike: (post_id) => instance.post(`/like/${post_id}`),
+};
 
 //   export const likeApis = {
 //     // 게시물 불러오기

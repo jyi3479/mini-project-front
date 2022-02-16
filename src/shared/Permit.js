@@ -1,13 +1,11 @@
 import React from "react";
 
 import { useSelector } from "react-redux";
-import { apiKey } from "./firebase";
 
 const Permit = (props) => {
   const is_login = useSelector((state) => state.user.user);
 
-  const _session_key = `firebase:authUser:${apiKey}:[DEFAULT]`;
-  const is_session = sessionStorage.getItem(_session_key) ? true : false;
+  const is_session = document.cookie ? true : false;
 
   if (is_login && is_session) {
     return <>{props.children}</>;

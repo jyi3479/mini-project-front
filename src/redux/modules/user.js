@@ -24,13 +24,16 @@ const initialState = {
 // middleware actions
 const loginCheck = () => {
   return function (dispatch, getState, { history }) {
-    const userId = localStorage.getItem("username");
-    const tokenCheck = document.cookie;
-    if (tokenCheck) {
-      dispatch(setUser({ username: userId }));
-    } else {
-      dispatch(logOut());
-    }
+    userApis.userInfo().then((res) => {
+      console.log(res.data);
+      dispatch(
+        setUser({
+          username: res.data.username,
+          nickname: res.data.nickname,
+          user_profile: res.data.user_profile,
+        })
+      );
+    });
   };
 };
 
@@ -42,12 +45,14 @@ const loginDB = (id, pwd) => {
         console.log(res);
         const user_data = res.data;
         setCookie("token", user_data.token);
-        localStorage.setItem("username", res.data.username);
+        localStorage.setItem("nickname", res.data.nickname);
 
         dispatch(
           setUser({
             id: id,
             password: pwd,
+            username: res.data.username,
+            nickname: res.data.nickname,
           })
         );
         history.push("/");

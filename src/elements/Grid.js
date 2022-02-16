@@ -14,6 +14,8 @@ const Grid = (props) => {
     is_main,
     center,
     is_post,
+    align,
+    border,
   } = props;
 
   const styles = {
@@ -26,6 +28,8 @@ const Grid = (props) => {
     is_main,
     center,
     is_post,
+    align,
+    border,
   };
 
   if (is_post) {
@@ -53,12 +57,14 @@ Grid.defaultProps = {
   relative: false,
   center: false,
   _onClick: () => {},
+  align: null,
+  border: null,
 };
 
 const GridContainer = styled.div`
   width: ${(props) => props.width};
   height: 100%;
-
+  border-radius: 10px;
   box-sizing: border-box;
   ${(props) =>
     props.is_flex
@@ -69,18 +75,22 @@ const GridContainer = styled.div`
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")};
   ${(props) => (props.relative ? `position: relative;` : "")};
   ${(props) => (props.center ? `text-align: center;` : "")}
+  ${(props) => (props.align === "left" ? `margin-right: auto;` : "")}
+  ${(props) => (props.border ? `border: ${props.border};` : "")}
 `;
 
 const PostContainer = styled.div`
   width: ${(props) => props.width};
   height: 100%;
-
+  border-radius: 10px;
   box-sizing: border-box;
   ${(props) => (props.is_flex ? `display: flex;` : "")};
   ${(props) => (props.padding ? `padding: ${props.padding};` : "")};
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")};
   ${(props) => (props.center ? `text-align: center;` : "")}
+  ${(props) => (props.align === "left" ? `margin-right: auto;` : "")}
+  ${(props) => (props.border ? `border: ${props.border};` : "")}
 `;
 
 export default Grid;

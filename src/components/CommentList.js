@@ -1,16 +1,41 @@
 import React from "react";
+import { Grid, Image, Text } from "../elements";
 
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as commentActions } from "../redux/modules/comment";
 
 const CommentList = (props) => {
-  
+  const dispatch = useDispatch();
+  const comment_list = useSelector((state) => state.comment.lsit);
 
-  const {} = props;
+  const { post_id } = props;
 
-  
+  // React.useEffect(() => {
+  //   dispatch(commentActions.getCommentDB(post_id));
+  // }, []);
+
+  return <React.Fragment>댓글 리스트</React.Fragment>;
 };
-  //post_id를 props로 받아오고 그 post_id도 database에서 가져오므로
-  //post_id가 없는 순간이 생기면서 comment_list[post_id]에 아무 것도 없게 된다
-  //또는 달린 댓글이 없을때도 map함수를 돌리면 오류가 나므로 이 조건 추가해야함!
 
+const CommentItem = (props) => {
+  // const { user_name, comment, user_profile, insert_dt } = props;
+  return (
+    <Grid is_flex padding="16px">
+      {/* <Image shape="circle" src={user_profile} /> */}
+      {/* <Text>{props.nickname}</Text>
+      <Text>{props.comment}</Text>
+      <Text>{props.commentDate}</Text> */}
+    </Grid>
+  );
+};
+
+CommentItem.defaultProps = {
+  user_profile: "",
+  user_name: "juyeong",
+  user_id: "",
+  post_id: 1,
+  insert_dt: "2021-01-01 10:00:00",
+  contents: "우와 라이언이다!",
+};
 
 export default CommentList;
