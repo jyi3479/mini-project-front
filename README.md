@@ -6,8 +6,8 @@
 
 ## 1. 제작기간 & 팀원 소개
 - 2022년 2월 10일 ~ 2022년 2월 16일
-- 프론트 이주영 소정현 [Github](https://github.com/jyi3479/mini-project-front)
-- 백엔드 이혁준 박재균 김채경 [Github](https://github.com/KimCG1130/miniproject)
+- 프론트 : 이주영 소정현 [Github](https://github.com/jyi3479/mini-project-front)
+- 백엔드 : 이혁준 박재균 김채경 [Github](https://github.com/KimCG1130/miniproject)
 
 [Triptalk 보러가기](http://triptalk.com.s3-website.ap-northeast-2.amazonaws.com)
 ![미니프로젝트 사진](https://user-images.githubusercontent.com/94282246/154506847-ca0ca7ff-983b-4843-99e3-0350ad2ba70f.png)
