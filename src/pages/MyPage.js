@@ -17,7 +17,7 @@ const MyPage = (props) => {
   }, []);
   return (
     <Grid center padding="15px 0px" width="50vw" margin="auto">
-      <Grid padding="10px" margin="5px 0px" border="1px solid">
+      <Grid padding="15px" margin="5px auto" border="1px solid">
         <Text size="25px" bold>
           내가 작성한 글
         </Text>

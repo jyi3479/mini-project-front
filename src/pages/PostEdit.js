@@ -87,7 +87,6 @@ const PostEdit = (props) => {
       <Grid padding="16px">
         <Input
           value={title}
-          defaultValue={title}
           _onChange={(e) => {
             setTitle(e.target.value);
           }}
@@ -126,7 +125,6 @@ const PostEdit = (props) => {
               setEvaluation(e.target.value);
             }}
             value={evaluation}
-            defaultValue={evaluation}
           >
             <option value="">평가</option>
             <option value="아주좋음">아주좋음</option>

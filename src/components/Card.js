@@ -89,7 +89,7 @@ const Card = (props) => {
                 </Text>
               </Grid>
               <Grid padding="0px 16px" is_flex>
-                <Text color="blue">{props.nickname}</Text>
+                <Text color="green">{props.nickname}</Text>
                 <Text margin="0px 6px" size="16px" bold>
                   {props.country} &nbsp; / &nbsp; {props.city}
                 </Text>
