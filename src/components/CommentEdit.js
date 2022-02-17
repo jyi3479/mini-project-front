@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 
-import { Grid, Input, Button } from "../elements";
+import { Grid, Input, Button, Text } from "../elements";
 
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as commentActions } from "../redux/modules/comment";
@@ -52,7 +52,9 @@ export default function CommentEdit(props) {
 
   return (
     <div>
-      <span onClick={handleOpen}>수정</span>
+      <Text _onClick={handleOpen} point>
+        수정
+      </Text>
       <Modal
         open={open}
         onClose={handleClose}
@@ -60,24 +62,28 @@ export default function CommentEdit(props) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Input
-            placeholder="댓글 내용을 입력해주세요 :)"
-            _onChange={onChange}
-            value={comment}
-            defaultValue={comment}
-            onSubmit={editComment}
-            is_submit
-          />
-          <Button
-            width="50px"
-            margin="0px 2px 0px 2px"
-            _onClick={() => {
-              editComment();
-              handleClose();
-            }}
-          >
-            수정
-          </Button>
+          <Grid is_flex>
+            <Grid width="100%">
+              <Input
+                placeholder="댓글 내용을 입력해주세요 :)"
+                _onChange={onChange}
+                value={comment}
+                defaultValue={comment}
+                onSubmit={editComment}
+                is_submit
+              />
+            </Grid>
+            <Button
+              width="50px"
+              margin="0px 2px 14px 2px"
+              _onClick={() => {
+                editComment();
+                handleClose();
+              }}
+            >
+              수정
+            </Button>
+          </Grid>
         </Box>
       </Modal>
     </div>

@@ -38,61 +38,60 @@ const Card = (props) => {
     <Grid>
       <Grid border="1px solid #d7d7d7" padding="15px" margin="15px 0px">
         <Grid is_flex padding="0px 16px">
-          <Grid>
+          <Grid is_flex width="auto">
             <Text bold size="15px">
-              {props.country} &nbsp; / &nbsp; {props.city}
+              <Index>{props.evalution}</Index>
             </Text>
           </Grid>
 
           <Grid is_flex width="auto">
-            <Text>
+            <Text margin="0px 5px">
               {props.postDate?.split("T")[0]}{" "}
               {props.postDate?.split("T")[1]?.split(".")[0]}
             </Text>
-            <Grid>
-              {props.is_me && (
-                <Button
-                  width="auto"
-                  padding="5px"
-                  margin="4px"
-                  bg="#ed7928"
-                  _onClick={() => {
-                    history.push(`/edit/${props.postId}`);
-                  }}
-                >
-                  수정
-                </Button>
-              )}
-              {props.is_me && (
-                <Button
-                  width="auto"
-                  padding="5px"
-                  margin="4px"
-                  bg="#eb8738"
-                  _onClick={() => {
-                    console.log("삭제!");
-                    dispatch(postActions.deletePostDB(props.postId));
-                    history.push("/");
-                  }}
-                >
-                  삭제
-                </Button>
-              )}
-            </Grid>
+
+            {props.is_me && (
+              <Button
+                width="auto"
+                padding="5px"
+                margin="4px"
+                bg="#eb8738"
+                _onClick={() => {
+                  history.push(`/edit/${props.postId}`);
+                }}
+              >
+                수정
+              </Button>
+            )}
+            {props.is_me && (
+              <Button
+                width="auto"
+                padding="5px"
+                margin="4px"
+                bg="#acacac"
+                _onClick={() => {
+                  console.log("삭제!");
+                  dispatch(postActions.deletePostDB(props.postId));
+                  history.push("/");
+                }}
+              >
+                삭제
+              </Button>
+            )}
           </Grid>
         </Grid>
         <Grid>
           <Grid>
             <Grid>
               <Grid>
-                <Text margin="0px 0px 0px 16px" size="24px" bold>
+                <Text margin="0px 0px 0px 16px" size="30px" bold>
                   {props.title}
                 </Text>
               </Grid>
               <Grid padding="0px 16px" is_flex>
                 <Text color="blue">{props.nickname}</Text>
-                <Text margin="0px 5px" size="16px">
-                  <Index>{props.evalution}</Index>
+                <Text margin="0px 6px" size="16px" bold>
+                  {props.country} &nbsp; / &nbsp; {props.city}
                 </Text>
               </Grid>
               {/* <hr /> */}
@@ -143,12 +142,12 @@ Card.defaultProps = {
 };
 
 const Index = styled.span`
-  /* border: 1px solid green;
-  border-radius: 5px; */
+  border: 1px solid green;
+  border-radius: 20px;
   padding: 4px;
-  margin: 5px;
+
   /* background-color: #ed7928; */
-  /* color: green; //평가마다 색깔 다르게 하고 싶음.. */
+  color: green; //평가마다 색깔 다르게 하고 싶음..
   font-weight: bold;
 `;
 

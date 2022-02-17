@@ -45,6 +45,7 @@ Button.defaultProps = {
   _disabled: false,
   is_circle: false,
   _onClick: () => {},
+  bg: "#61b165",
 };
 
 const Btn = styled.button`
@@ -53,9 +54,9 @@ const Btn = styled.button`
   box-sizing: border-box;
   width: ${(props) => props.width};
   height: 35px;
-  background-color: ${(props) => (props.disabled ? "#acacac" : "#61b165")};
+  background-color: ${(props) => (props.disabled ? "#acacac" : props.bg)};
   border: none;
-  border-radius: 20px;
+  border-radius: 10px;
   color: white;
   font-family: inherit; // font 상속
 

@@ -45,16 +45,15 @@ const CommentItem = (props) => {
   };
   return (
     <Grid is_flex>
-      <Grid is_flex width="auto">
-        <Image shape="circle" src={userProfile} />
-        <Text margin="5px" bold>
+      <Grid is_flex width="15vw">
+        <Text margin="0px" bold>
           {nickname}
         </Text>
       </Grid>
       <Grid is_flex margin="0px 5px">
         <Text margin="0px">{comment}</Text>
         <Grid is_flex width="auto">
-          <Text margin="5px">
+          <Text margin="7px">
             {commentDate?.split("T")[0]} &nbsp;
             {commentDate?.split("T")[1]?.split(".")[0]}
           </Text>
@@ -62,9 +61,9 @@ const CommentItem = (props) => {
             <CommentEdit comment_id={commentId} post_id={postId} />
           )}
           {nickname === login_user && (
-            <span style={{ margin: "5px" }} onClick={deleteComment}>
+            <Text margin="5px" onClick={deleteComment} point>
               삭제
-            </span>
+            </Text>
           )}
         </Grid>
       </Grid>

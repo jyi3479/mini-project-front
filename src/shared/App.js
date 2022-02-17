@@ -39,7 +39,7 @@ function App() {
           <Route path="/write" exact component={PostWrite} />
           <Route path="/detail/:postId" exact component={PostDetail} />
           <Route path="/edit/:postId" exact component={PostEdit} />
-          <Route path="/mypage" exact componet={MyPage} />
+          <Route path="/mypage" exact component={MyPage} />
         </ConnectedRouter>
       </Grid>
       <Permit>

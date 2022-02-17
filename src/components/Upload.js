@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
 import { Button } from "../elements";
 // import { storage } from "./firebase";
 import { actionCreators as imageActions } from "../redux/modules/image";
@@ -39,15 +40,29 @@ const Upload = (props) => {
   return (
     <React.Fragment>
       {/* disabled 속성 주면 파일선택 버튼 안눌린다. */}
+      <ImageLabel className="input-file-button" for="input-file">
+        이미지 찾기
+      </ImageLabel>
       <input
+        id="input-file"
         type="file"
         onChange={selectFile}
         ref={fileInput}
         disabled={is_uploading}
+        style={{ display: "none" }}
       />
+
       {/* <Button _onClick={uploadFB}>업로드하기</Button> */}
     </React.Fragment>
   );
 };
+
+const ImageLabel = styled.label`
+  padding: 6px 25px;
+  background-color: #ff6600;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+`;
 
 export default Upload;

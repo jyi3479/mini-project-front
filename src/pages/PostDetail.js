@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "../components/Card";
+import { Grid } from "../elements";
 import { CommentList, CommentWrite } from "../components";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -30,7 +31,7 @@ const PostDetail = (props) => {
   }, []);
 
   return (
-    <React.Fragment>
+    <Grid width="80vw" margin="auto">
       {post && (
         <Card
           {...post}
@@ -43,7 +44,7 @@ const PostDetail = (props) => {
         <CommentWrite post_id={post_index} />
       </Permit>
       <CommentList post_id={post_index} />
-    </React.Fragment>
+    </Grid>
   );
 };
 

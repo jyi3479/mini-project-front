@@ -6,6 +6,7 @@ import Post from "./Post";
 import Upload from "./Upload";
 import CommentEdit from "./CommentEdit";
 import ComplexGrid from "./ComplexGrid";
+import MyPost from "./MyPost";
 
 export {
   Card,
@@ -16,4 +17,5 @@ export {
   Upload,
   CommentEdit,
   ComplexGrid,
+  MyPost,
 };

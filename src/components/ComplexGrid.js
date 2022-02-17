@@ -4,6 +4,7 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import ButtonBase from "@mui/material/ButtonBase";
+import { history } from "../redux/configureStore";
 
 const Img = styled("img")({
   margin: "auto",
@@ -27,31 +28,55 @@ const ComplexGrid = (props) => {
       <Grid container spacing={2}>
         <Grid item>
           <ButtonBase sx={{ width: 128, height: 128 }}>
-            <Img alt="complex" src="/static/images/grid/complex.jpg" />
+            <Img alt="complex" src={props.imgUrl} />
           </ButtonBase>
         </Grid>
         <Grid item xs={12} sm container>
           <Grid item xs container direction="column" spacing={2}>
             <Grid item xs>
-              <Typography gutterBottom variant="subtitle1" component="div">
-                Standard license
+              <Typography
+                gutterBottom
+                variant="subtitle1"
+                component="div"
+                style={{ fontFamily: "inherit" }}
+              >
+                {props.title}
               </Typography>
-              <Typography variant="body2" gutterBottom>
-                Full resolution 1920x1080 • JPEG
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                ID: 1030114
+              {/* <Typography
+                variant="body2"
+                gutterBottom
+                style={{ fontFamily: "inherit" }}
+              >
+                {props.country} / {props.city}
+              </Typography> */}
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                style={{ fontFamily: "inherit" }}
+              >
+                {props.country} / {props.city}
               </Typography>
             </Grid>
             <Grid item>
-              <Typography sx={{ cursor: "pointer" }} variant="body2">
-                Remove
+              <Typography
+                sx={{ cursor: "pointer" }}
+                variant="body2"
+                style={{ fontFamily: "inherit" }}
+                onClick={() => {
+                  history.push(`/detail/${props.postId}`);
+                }}
+              >
+                바로가기
               </Typography>
             </Grid>
           </Grid>
           <Grid item>
-            <Typography variant="subtitle1" component="div">
-              $19.00
+            <Typography
+              variant="subtitle1"
+              component="div"
+              style={{ fontFamily: "inherit" }}
+            >
+              댓글 {props.commentCnt} 좋아요 {props.likeCnt}
             </Typography>
           </Grid>
         </Grid>

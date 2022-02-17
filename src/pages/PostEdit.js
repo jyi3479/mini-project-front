@@ -69,18 +69,18 @@ const PostEdit = (props) => {
     );
   }
   return (
-    <Grid padding="0px 40px">
+    <Grid padding="0px 40px" width="70vw" margin="auto">
       <Grid padding="10px">
         <Text margine="0px" size="24px" bold>
           미리보기
         </Text>
         <Grid is_flex>
-          <Upload />
           <Image
             half
             shape="big_square"
             src={preview ? preview : target.imgUrl}
           />
+          <Upload />
         </Grid>
       </Grid>
 
