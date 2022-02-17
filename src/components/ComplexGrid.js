@@ -12,7 +12,7 @@ const Img = styled("img")({
   maxHeight: "100%",
 });
 
-export default function ComplexGrid() {
+const ComplexGrid = (props) => {
   return (
     <Paper
       sx={{
@@ -58,4 +58,6 @@ export default function ComplexGrid() {
       </Grid>
     </Paper>
   );
-}
+};
+
+export default ComplexGrid;

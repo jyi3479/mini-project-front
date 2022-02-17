@@ -1,20 +1,20 @@
 import React from "react";
 // import {Post} from "../redux/modules/post"
 import { useSelector } from "react-redux";
-import { ComplexGrid } from "../components/ComplexGrid";
+import { useDispatch } from "react-redux";
+import ComplexGrid from "../components";
+import { actionCreators as MyActions } from "../redux/modules/mypage";
 
 const MyPage = (props) => {
-  const post_list = useSelector((state) => state.post.list);
+  const dispatch = useDispatch();
+  const post_list = useSelector((state) => state.mypage.list);
   console.log(post_list);
-
-  return (
-    <>
-      <h1>님의 최신 글입니다.</h1>
-      {post_list.map((p, idx) => {
-        return <ComplexGrid key={p.id} {...p} />;
-      })}
-    </>
-  );
+  React.useEffect(() => {
+    if (document.cookie) {
+      dispatch(MyActions.myPostDB());
+    }
+  }, []);
+  return <div>마이페이지!!!!!!!!!!!!</div>;
 };
 
 export default MyPage;

@@ -7,6 +7,7 @@ import {
   PostWrite,
   PostEdit,
   PostDetail,
+  MyPage,
 } from "../pages";
 import { Header } from "../components";
 import { Grid, Button } from "../elements";
@@ -38,6 +39,7 @@ function App() {
           <Route path="/write" exact component={PostWrite} />
           <Route path="/detail/:postId" exact component={PostDetail} />
           <Route path="/edit/:postId" exact component={PostEdit} />
+          <Route path="/mypage" exact componet={MyPage} />
         </ConnectedRouter>
       </Grid>
       <Permit>

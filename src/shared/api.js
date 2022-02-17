@@ -84,9 +84,10 @@ export const likeApis = {
   clickLike: (post_id) => instance.post(`/like/${post_id}`),
 };
 
-// export const mypageApis = {
-//   mypost:
-// }
+export const mypageApis = {
+  mypost: () => instance.get("/user/mypost"),
+  mylike: () => instance.get("/user/mylike"),
+};
 
 //   export const likeApis = {
 //     // 게시물 불러오기

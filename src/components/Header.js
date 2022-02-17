@@ -26,6 +26,9 @@ const Header = (props) => {
               padding="7px"
               bg="#61b165"
               margin="0px 10px 0px 0px"
+              _onClick={() => {
+                history.push("/mypage");
+              }}
             >
               내정보
             </Button>

@@ -5,5 +5,15 @@ import Header from "./Header";
 import Post from "./Post";
 import Upload from "./Upload";
 import CommentEdit from "./CommentEdit";
+import ComplexGrid from "./ComplexGrid";
 
-export { Card, CommentList, CommentWrite, Header, Post, Upload, CommentEdit };
+export {
+  Card,
+  CommentList,
+  CommentWrite,
+  Header,
+  Post,
+  Upload,
+  CommentEdit,
+  ComplexGrid,
+};
