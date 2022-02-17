@@ -85,12 +85,13 @@ Input.defaultProps = {
 };
 
 const InputField = styled.input`
-  ${(props) => (props.width ? `width: ${props.width};` : `width: 100%;`)}
-  min-width: 230px;
+  /* ${(props) => (props.width ? `width: ${props.width};` : `width: 100%;`)} */
+  width: 100%;
+  /* min-width: 230px; */
   box-sizing: border-box;
   padding: 10px;
   border: 2px solid #acacac;
-  border-radius: 3px;
+  border-radius: 10px;
   ${(props) =>
     props.margin ? `margin: ${props.margin};` : `margin-bottom: 20px;`}
   font-family: inherit; // font 상속
@@ -111,7 +112,7 @@ const TextAreaField = styled.textarea`
   box-sizing: border-box;
   padding: 10px;
   border: 2px solid #acacac;
-  border-radius: 3px;
+  border-radius: 10px;
   margin-bottom: 20px;
   font-family: inherit; // font 상속
   &:focus {

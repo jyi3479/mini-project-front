@@ -16,6 +16,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { CardActionArea } from "@mui/material";
 
 import { Button, Grid, Like } from "../elements";
 
@@ -59,73 +60,56 @@ const Post = (props) => {
     setExpanded(!expanded);
   };
   return (
-    <Card
-      sx={{ margin: 2 }}
-      // onClick={() => {
-      //   history.replace(`detail/${props.postId}`);
-      // }}
-    >
-      {/* <Button
-        _onClick={() => {
-          history.push(`/edit/${props.postId}`);
-        }}
-      >
-        수정
-      </Button> */}
-      {/* <Button
-        _onClick={() => {
-          dispatch(postActions.deletePostDB(props.postId));
-        }}
-      >
-        삭제
-      </Button> */}
-      <Grid
-        _onClick={() => {
-          history.replace(`detail/${props.postId}`);
-        }}
-      >
-        <CardMedia
-          component="img"
-          height="194"
-          image={`${props.imgUrl}`}
-          alt="Paella dish"
-        />
-        <CardHeader
-          action={
-            <IconButton aria-label="settings">
-              <MoreVertIcon />
-            </IconButton>
-          }
-          title={`${props.title}`}
-          subheader={`${props.country}/${props.city}`}
-          titleTypographyProps={{
-            fontFamily: "inherit",
-            fontWeight: "bold",
-            color: "#585353",
+    <Card sx={{ margin: 2 }}>
+      <CardActionArea style={{ fontFamily: "inherit" }}>
+        <Grid
+          _onClick={() => {
+            history.replace(`detail/${props.postId}`);
           }}
-          subheaderTypographyProps={{
-            fontFamily: "inherit",
-          }}
-        />
-      </Grid>
-      <CardActions
-        disableSpacing
-        sx={{ display: "flex", justifyContent: "space-between" }}
-      >
-        <CardContent>
-          <Typography variant="body2" style={{ fontFamily: "inherit" }}>
-            댓글 {props.commentCnt} &nbsp; 좋아요 {like_cnt}
-          </Typography>
-        </CardContent>
-        <Permit>
-          <FavoriteIcon
-            onClick={likeCheck}
-            style={{
-              color: is_like ? "pink" : "grey",
+        >
+          <CardMedia
+            component="img"
+            height="194"
+            image={`${props.imgUrl}`}
+            alt="Paella dish"
+          />
+          <CardHeader
+            action={
+              <IconButton aria-label="settings">
+                <MoreVertIcon />
+              </IconButton>
+            }
+            title={`${props.title}`}
+            subheader={`${props.country}/${props.city}`}
+            titleTypographyProps={{
+              fontFamily: "inherit",
+              fontWeight: "bold",
+              color: "#585353",
+            }}
+            subheaderTypographyProps={{
+              fontFamily: "inherit",
             }}
           />
-        </Permit>
-      </CardActions>
+        </Grid>
+        <CardActions
+          disableSpacing
+          sx={{ display: "flex", justifyContent: "space-between" }}
+        >
+          <CardContent>
+            <Typography variant="body2" style={{ fontFamily: "inherit" }}>
+              댓글 {props.commentCnt} &nbsp; 좋아요 {like_cnt}
+            </Typography>
+          </CardContent>
+          <Permit>
+            <FavoriteIcon
+              onClick={likeCheck}
+              style={{
+                color: is_like ? "pink" : "grey",
+              }}
+            />
+          </Permit>
+        </CardActions>
+      </CardActionArea>
     </Card>
   );
 };

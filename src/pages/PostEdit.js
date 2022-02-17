@@ -69,7 +69,7 @@ const PostEdit = (props) => {
     );
   }
   return (
-    <React.Fragment>
+    <Grid padding="0px 40px">
       <Grid padding="10px">
         <Text margine="0px" size="24px" bold>
           미리보기
@@ -83,7 +83,7 @@ const PostEdit = (props) => {
           />
         </Grid>
       </Grid>
-      <Grid></Grid>
+
       <Grid padding="16px">
         <Input
           value={title}
@@ -94,24 +94,28 @@ const PostEdit = (props) => {
           label="제목"
           placeholder="제목"
         />
-        <div style={{ display: "flex", justifyContent: "stretch" }}>
-          <Input
-            value={country}
-            _onChange={(e) => {
-              setCountry(e.target.value);
-            }}
-            label="나라"
-            placeholder="나라"
-          />
-          <Input
-            value={city}
-            _onChange={(e) => {
-              setCity(e.target.value);
-            }}
-            label="도시"
-            placeholder="도시"
-          />
-        </div>
+        <Grid is_flex>
+          <Grid width="100%" margin="0px 7px 0px 0px">
+            <Input
+              value={country}
+              _onChange={(e) => {
+                setCountry(e.target.value);
+              }}
+              label="나라"
+              placeholder="나라"
+            />
+          </Grid>
+          <Grid width="100%" margin="0px 0px 0px 7px">
+            <Input
+              value={city}
+              _onChange={(e) => {
+                setCity(e.target.value);
+              }}
+              label="도시"
+              placeholder="도시"
+            />
+          </Grid>
+        </Grid>
         <Grid>
           <label htmlFor="select" style={{ fontWeight: 700, fontSize: "14px" }}>
             평가
@@ -161,7 +165,7 @@ const PostEdit = (props) => {
           게시글 수정
         </Button>
       </Grid>
-    </React.Fragment>
+    </Grid>
   );
 };
 

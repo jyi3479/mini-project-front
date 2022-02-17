@@ -28,17 +28,19 @@ const CommentWrite = (props) => {
   };
 
   return (
-    <Grid is_flex padding="16px">
-      <Input
-        placeholder="댓글 내용을 입력해주세요 :)"
-        _onChange={onChange}
-        value={comment}
-        onSubmit={addComment}
-        is_submit
-      />
+    <Grid is_flex>
+      <Grid width="100%">
+        <Input
+          placeholder="댓글 내용을 입력해주세요 :)"
+          _onChange={onChange}
+          value={comment}
+          onSubmit={addComment}
+          is_submit
+        />
+      </Grid>
       <Button
         width="50px"
-        margin="0px 2px 0px 2px"
+        margin="0px 2px 14px 2px"
         _onClick={addComment}
         // _disabled={comment === "" ? true : false}
       >

@@ -25,26 +25,26 @@ const initialState = {
 const loginCheck = () => {
   return function (dispatch, getState, { history }) {
     const _nickname = localStorage.getItem("nickname");
-    // dispatch(
-    //   setUser({
-    //     nickname: _nickname,
-    //   })
-    // );
-    userApis
-      .userInfo()
-      .then((res) => {
-        console.log(res.data);
-        dispatch(
-          setUser({
-            username: res.data.username,
-            nickname: res.data.nickname,
-            user_profile: res.data.user_profile,
-          })
-        );
+    dispatch(
+      setUser({
+        nickname: _nickname,
       })
-      .catch((err) => {
-        console.log("유저정보를 가져오지 못했어요");
-      });
+    );
+    // userApis
+    //   .userInfo()
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     dispatch(
+    //       setUser({
+    //         username: res.data.username,
+    //         nickname: res.data.nickname,
+    //         user_profile: res.data.user_profile,
+    //       })
+    //     );
+    //   })
+    //   .catch((err) => {
+    //     console.log("유저정보를 가져오지 못했어요");
+    //   });
   };
 };
 
@@ -88,13 +88,13 @@ const logoutAction = () => {
   };
 };
 
-const signupDB = (id, pwd, nickname) => {
+const signupDB = (id, pwd, pwdcheck, nickname) => {
   return function (dispatch, getState, { history }) {
     // const _image = getState().image.preview;
     const _image =
       "https://myimagestorage.s3.ap-northeast-2.amazonaws.com/5d9ecbd820dfd2738de6.jpg";
     userApis
-      .signup(id, pwd, nickname, _image)
+      .signup(id, pwd, pwdcheck, nickname, _image)
       .then((res) => console.log(res, "회원가입 성공"))
       .catch((error) => console.log(error));
     history.push("/login");

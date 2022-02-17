@@ -8,6 +8,7 @@ const SET_POST = "SET_POST";
 const SET_DETAIL = "SET_DETAIL";
 const ADD_POST = "ADD_POST";
 const EDIT_POST = "EDIT_POST";
+const EDIT_TARGET = "EDIT_TARGET";
 const DELETE_POST = "DELETE_POST";
 
 // action creator
@@ -18,6 +19,9 @@ const addPost = createAction(ADD_POST, (post) => ({ post }));
 const editPost = createAction(EDIT_POST, (post_Id, post) => ({
   post,
   post_Id,
+}));
+const editTarget = createAction(EDIT_TARGET, (comment_cnt) => ({
+  comment_cnt,
 }));
 const deletePost = createAction(DELETE_POST, (post_Id) => ({ post_Id }));
 
@@ -72,9 +76,9 @@ const initialPost = {
   insert_dt: "2021-02-27 10:00:00",
 };
 
-const getPostDB = () => {
+const getPostDB = (type) => {
   return function (dispatch, getState, { history }) {
-    postApis.getPost().then((res) => {
+    postApis.getPost(type).then((res) => {
       console.log(res.data.postResponseDto);
       let post_list = res.data.postResponseDto;
       dispatch(setPost(post_list));
@@ -229,8 +233,20 @@ export default handleActions(
         let idx = draft.list.findIndex(
           (p) => p.postId === action.payload.post_id
         );
+        // console.log(idx);
         draft.list[idx] = { ...draft.list[idx], ...action.payload.post };
       }),
+
+    [EDIT_TARGET]: (state, action) =>
+      produce(state, (draft) => {
+        console.log(action.payload.comment_cnt);
+        // let idx = draft.list.findIndex(
+        //   (p) => p.postId === action.payload.post_id
+        // );
+        // // console.log(idx);
+        draft.target = { ...draft.target, ...action.payload.comment_cnt };
+      }),
+
     [DELETE_POST]: (state, action) =>
       produce(state, (draft) => {
         let idx = draft.list.findIndex(
@@ -252,5 +268,6 @@ const actionCreators = {
   editPostDB,
   deletePostDB,
   getDetailDB,
+  editTarget,
 };
 export { actionCreators };

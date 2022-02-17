@@ -86,10 +86,8 @@ const addCommentDB = (post_id, nickname, comment) => {
       nickname: nickname,
       commentDate: moment().format("YYYY-MM-DD kk:mm:ss"),
     };
-    const post = getState().post.list.find(
-      (l) => l.postId === parseInt(post_id)
-    );
-    console.log(post);
+    const target = getState().post.target;
+    console.log(target);
     commentApis
       .createComment(post_id, _comment)
       .then((res) => {
@@ -97,10 +95,11 @@ const addCommentDB = (post_id, nickname, comment) => {
         dispatch(addComment(post_id, comment_data));
 
         // dispatch(
-        //   postActions.editPost(post_id, {
-        //     commentCnt: parseInt(post.commentCnt) + 1,
+        //   postActions.editTarget(parseInt(post_id), {
+        //     commentCnt: parseInt(target.commentCnt) + 1,
         //   })
         // );
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);

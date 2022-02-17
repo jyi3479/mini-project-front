@@ -29,7 +29,7 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <Grid padding="10px 30px 50px 30px">
+      <Grid padding="10px 60px 50px 60px">
         <Header></Header>
         <ConnectedRouter history={history}>
           <Route path="/" exact component={PostList} />

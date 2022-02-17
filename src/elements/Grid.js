@@ -75,7 +75,7 @@ const GridContainer = styled.div`
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")};
   ${(props) => (props.relative ? `position: relative;` : "")};
   ${(props) => (props.center ? `text-align: center;` : "")}
-  ${(props) => (props.align === "left" ? `margin-right: auto;` : "")}
+  /* ${(props) => (props.align === "left" ? `margin-right: auto;` : "")} */
   ${(props) => (props.border ? `border: ${props.border};` : "")}
 `;
 
@@ -89,7 +89,7 @@ const PostContainer = styled.div`
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")};
   ${(props) => (props.center ? `text-align: center;` : "")}
-  ${(props) => (props.align === "left" ? `margin-right: auto;` : "")}
+  /* ${(props) => (props.align === "left" ? `margin-right: auto;` : "")} */
   ${(props) => (props.border ? `border: ${props.border};` : "")}
 `;
 

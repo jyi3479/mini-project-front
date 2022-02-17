@@ -81,7 +81,7 @@ const PostWrite = (props) => {
   //   );
   // }
   return (
-    <React.Fragment>
+    <Grid padding="0px 40px">
       <Grid padding="10px">
         <Text margine="0px" size="24px" bold>
           미리보기
@@ -100,12 +100,7 @@ const PostWrite = (props) => {
         </Grid>
         {/* <Upload /> */}
       </Grid>
-      <Grid>
-        {/* <Image
-          shape="rectangle"
-          src="https://usagi-post.com/wp-content/uploads/2020/05/no-image-found-360x250-1.png"
-        /> */}
-      </Grid>
+
       <Grid padding="16px">
         <Input
           value={title}
@@ -116,26 +111,30 @@ const PostWrite = (props) => {
           label="제목"
           placeholder="제목"
         />
-        <div style={{ display: "flex", justifyContent: "stretch" }}>
-          <Input
-            value={country}
-            _onChange={(e) => {
-              setCountry(e.target.value);
-            }}
-            multiLine
-            label="나라"
-            placeholder="나라"
-          />
-          <Input
-            value={city}
-            _onChange={(e) => {
-              setCity(e.target.value);
-            }}
-            multiLine
-            label="도시"
-            placeholder="도시"
-          />
-        </div>
+        <Grid is_flex>
+          <Grid width="100%" margin="0px 7px 0px 0px">
+            <Input
+              value={country}
+              _onChange={(e) => {
+                setCountry(e.target.value);
+              }}
+              multiLine
+              label="나라"
+              placeholder="나라"
+            />
+          </Grid>
+          <Grid width="100%" margin="0px 0px 0px 7px">
+            <Input
+              value={city}
+              _onChange={(e) => {
+                setCity(e.target.value);
+              }}
+              multiLine
+              label="도시"
+              placeholder="도시"
+            />
+          </Grid>
+        </Grid>
         <Grid>
           <label htmlFor="select" style={{ fontWeight: 700, fontSize: "14px" }}>
             평가
@@ -184,7 +183,7 @@ const PostWrite = (props) => {
           게시글 작성
         </Button>
       </Grid>
-    </React.Fragment>
+    </Grid>
   );
 };
 
@@ -197,7 +196,7 @@ const Select = styled.select`
   font-family: inherit; // font 상속
   line-height: inherit;
   border: 2px solid #acacac;
-  border-radius: 4px;
+  border-radius: 10px;
   color: inherit;
   background-color: transparent;
   &:focus {

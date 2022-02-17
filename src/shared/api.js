@@ -27,15 +27,20 @@ export const userApis = {
   login: (id, pwd) =>
     instance.post("/user/login", { username: id, password: pwd }),
   // 회원가입 요청
-  signup: (id, pwd, nickname, profile) =>
+  signup: (id, pwd, pwdcheck, nickname, profile) =>
     instance.post("/user/signup", {
       user_profile: profile,
       username: id,
       password: pwd,
-      // passwordcheck: pwdcheck,
+      passwordcheck: pwdcheck,
       nickname: nickname,
     }),
   userInfo: () => instance.get(`/user/loginInfo`),
+
+  idcheck: (id) => instance.post(`/user/idcheck`, { username: id }),
+  nickcheck: (nickname) =>
+    instance.post(`/user/nicknamecheck`, { nickname: nickname }),
+
   // userInfo: (token) =>
   //   instance.post(`/user/userinfo`, {
   //     authorization: token,
@@ -51,7 +56,7 @@ export const userApis = {
 
 export const postApis = {
   // 게시물 불러오기
-  getPost: () => instance.get("/post?postType=like"),
+  getPost: (type) => instance.get(`/post?postType=${type}`),
   // 게시글 상세 조회
   detailPost: (id) => instance.get(`/post/${id}`),
   // 게시물 작성하기
@@ -78,6 +83,10 @@ export const commentApis = {
 export const likeApis = {
   clickLike: (post_id) => instance.post(`/like/${post_id}`),
 };
+
+// export const mypageApis = {
+//   mypost:
+// }
 
 //   export const likeApis = {
 //     // 게시물 불러오기

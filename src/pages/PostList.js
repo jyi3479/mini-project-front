@@ -6,15 +6,24 @@ import { actionCreators as postActions } from "../redux/modules/post";
 import { Text } from "../elements";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
+
 import styled from "styled-components";
 
 const PostList = (props) => {
   const post_list = useSelector((state) => state.post.list);
   const dispatch = useDispatch();
   React.useEffect(() => {
-    dispatch(postActions.getPostDB());
+    dispatch(postActions.getPostDB("like"));
   }, []);
   console.log(post_list);
+
+  const getLike = () => {
+    dispatch(postActions.getPostDB("like"));
+  };
+
+  const getTime = () => {
+    dispatch(postActions.getPostDB("time"));
+  };
 
   // React.useEffect(() => {
   //   dispatch(postActions.getPostDB());
@@ -23,8 +32,12 @@ const PostList = (props) => {
   return (
     <Grid>
       <Grid container justifyContent="flex-end">
-        <Text margin="0px 3px"> 추천순 </Text>
-        <Text margin="0px 3px"> 최신순 </Text>
+        <Text margin="0px 4px" _onClick={getLike} bold point>
+          추천순
+        </Text>
+        <Text margin="0px 4px" _onClick={getTime} bold point>
+          최신순
+        </Text>
       </Grid>
       <Container sx={{ py: 8 }} maxWidth="md">
         <Grid container spacing={4}>

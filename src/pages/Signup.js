@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { emailCheck } from "../shared/check";
 import { Upload } from "../components";
+import axios from "axios";
+import { userApis } from "../shared/api";
 
 const Signup = (props) => {
   const dispatch = useDispatch();
@@ -13,6 +15,39 @@ const Signup = (props) => {
   const [pwd, setPwd] = React.useState("");
   const [pwd_check, setPwdCheck] = React.useState("");
   const [user_name, setUserName] = React.useState("");
+
+  const idcheck = () => {
+    userApis
+      .idcheck(id)
+      .then((res) => {
+        console.log(res);
+        if (res.data === true) {
+          alert("사용 가능한 아이디입니다!");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+
+        alert("중복된 아이디가 존재합니다.");
+      });
+  };
+
+  const nickcheck = () => {
+    userApis
+      .nickcheck(user_name)
+      .then((res) => {
+        console.log(res);
+        console.log(res);
+        if (res.data === true) {
+          alert("사용 가능한 닉네임입니다!");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+
+        alert("중복된 닉네임이 존재합니다.");
+      });
+  };
 
   const signup = () => {
     // 이메일 형식 체크
@@ -26,7 +61,7 @@ const Signup = (props) => {
       return;
     }
 
-    dispatch(userActions.signupDB(id, pwd, user_name));
+    dispatch(userActions.signupDB(id, pwd, pwd_check, user_name));
   };
   return (
     <Grid is_flex>
@@ -37,7 +72,7 @@ const Signup = (props) => {
           </Text>
         </Grid>
 
-        <Grid>
+        {/* <Grid>
           <Text bold>프로필 사진</Text>
           <Grid>
             <Image
@@ -51,31 +86,45 @@ const Signup = (props) => {
             />
             <Upload />
           </Grid>
-        </Grid>
+        </Grid> */}
 
         <Grid is_flex>
-          <Input
-            label="아이디"
-            placeholder="아이디를 입력해주세요"
-            value={id}
-            _onChange={(e) => {
-              setId(e.target.value);
-            }}
-          />
-          <Button width="10vw" _disabled={id === "" ? true : false}>
+          <Grid width="100%">
+            <Input
+              label="아이디"
+              placeholder="아이디를 입력해주세요"
+              value={id}
+              _onChange={(e) => {
+                setId(e.target.value);
+              }}
+            />
+          </Grid>
+          <Button
+            width="8vw"
+            _disabled={id === "" ? true : false}
+            margin="8px 0px 0px 4px"
+            _onClick={idcheck}
+          >
             중복확인
           </Button>
         </Grid>
         <Grid is_flex>
-          <Input
-            label="닉네임"
-            placeholder="닉네임를 입력해주세요"
-            value={user_name}
-            _onChange={(e) => {
-              setUserName(e.target.value);
-            }}
-          />
-          <Button width="10vw" _disabled={user_name === "" ? true : false}>
+          <Grid width="100%">
+            <Input
+              label="닉네임"
+              placeholder="닉네임를 입력해주세요"
+              value={user_name}
+              _onChange={(e) => {
+                setUserName(e.target.value);
+              }}
+            />
+          </Grid>
+          <Button
+            width="8vw"
+            _disabled={user_name === "" ? true : false}
+            margin="8px 0px 0px 4px"
+            _onClick={nickcheck}
+          >
             중복확인
           </Button>
         </Grid>

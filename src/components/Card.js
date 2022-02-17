@@ -8,6 +8,7 @@ import { actionCreators as postActions } from "../redux/modules/post";
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { likeApis, postApis } from "../shared/api";
+import styled from "styled-components";
 // import { useSelector } from "react-redux";
 // import "moment/locale/ko"; //백엔드에서 날짜를 주기 때문에 안써도 될 것 같습니다!
 // const [layout, setLayout] = useState(_post ? _post.layout : "bottom");
@@ -16,6 +17,7 @@ const Card = (props) => {
   const dispatch = useDispatch();
   const [is_like, setIsLike] = React.useState(false);
   const [like_cnt, setLikeCnt] = React.useState(0);
+  const [comment_cnt, setCommentCnt] = React.useState(0);
 
   const likeCheck = async () => {
     const res = await likeApis.clickLike(props.post_id);
@@ -33,69 +35,82 @@ const Card = (props) => {
   }, []);
 
   return (
-    <React.Fragment>
+    <Grid>
       <Grid border="1px solid #d7d7d7" padding="15px" margin="15px 0px">
-        <Grid is_flex padding="16px">
-          <Grid is_flex width="auto">
-            {/* <Image shape="circle" src={props.imgUrl} /> */}
-            <Text bold>{props.nickname}</Text>
+        <Grid is_flex padding="0px 16px">
+          <Grid>
+            <Text bold size="15px">
+              {props.country} &nbsp; / &nbsp; {props.city}
+            </Text>
           </Grid>
+
           <Grid is_flex width="auto">
-            <Text>{props.postDate}</Text>
-            {props.is_me && (
-              <Button
-                width="auto"
-                padding="5px"
-                margin="4px"
-                bg="#ed7928"
-                _onClick={() => {
-                  history.push(`/edit/${props.postId}`);
-                }}
-              >
-                수정
-              </Button>
-            )}
-            {props.is_me && (
-              <Button
-                width="auto"
-                padding="5px"
-                margin="4px"
-                bg="#eb8738"
-                _onClick={() => {
-                  console.log("삭제!");
-                  dispatch(postActions.deletePostDB(props.postId));
-                  history.push("/");
-                }}
-              >
-                삭제
-              </Button>
-            )}
+            <Text>
+              {props.postDate?.split("T")[0]}{" "}
+              {props.postDate?.split("T")[1]?.split(".")[0]}
+            </Text>
+            <Grid>
+              {props.is_me && (
+                <Button
+                  width="auto"
+                  padding="5px"
+                  margin="4px"
+                  bg="#ed7928"
+                  _onClick={() => {
+                    history.push(`/edit/${props.postId}`);
+                  }}
+                >
+                  수정
+                </Button>
+              )}
+              {props.is_me && (
+                <Button
+                  width="auto"
+                  padding="5px"
+                  margin="4px"
+                  bg="#eb8738"
+                  _onClick={() => {
+                    console.log("삭제!");
+                    dispatch(postActions.deletePostDB(props.postId));
+                    history.push("/");
+                  }}
+                >
+                  삭제
+                </Button>
+              )}
+            </Grid>
           </Grid>
         </Grid>
         <Grid>
           <Grid>
-            <Grid padding="16px">
-              <Text size="24px" bold>
-                {props.title}
-              </Text>
-            </Grid>
-            <Grid is_flex>
-              <Grid align="left" padding="16px">
+            <Grid>
+              <Grid>
+                <Text margin="0px 0px 0px 16px" size="24px" bold>
+                  {props.title}
+                </Text>
+              </Grid>
+              <Grid padding="0px 16px" is_flex>
+                <Text color="blue">{props.nickname}</Text>
+                <Text margin="0px 5px" size="16px">
+                  <Index>{props.evalution}</Index>
+                </Text>
+              </Grid>
+              {/* <hr /> */}
+              <Grid padding="40px">
                 <Image shape="big_square" size="60vw" src={props.imgUrl} />
               </Grid>
+
               <Grid padding="16px" center>
-                <Text size="16px">나라 : {props.country}</Text>
-                <Text size="16px">도시 : {props.city}</Text>
-                <Text size="16px">평가 : {props.evaluation}</Text>
-                <Text size="16px">후기 : {props.content}</Text>
+                <div style={{ textAlign: "left" }}>
+                  <Text size="16px">{props.content}</Text>
+                </div>
               </Grid>
             </Grid>
           </Grid>
         </Grid>
         <Grid padding="16px" is_flex>
           <Text margin="0px" bold color="#66696d">
-            댓글 {props.commentCnt}개 &nbsp; &nbsp; 좋아요
-            {like_cnt}개
+            댓글 {props.commentCnt}개 &nbsp;좋아요 {like_cnt}개
           </Text>
           <Permit>
             <FavoriteIcon
@@ -107,7 +122,7 @@ const Card = (props) => {
           </Permit>
         </Grid>
       </Grid>
-    </React.Fragment>
+    </Grid>
   );
 };
 
@@ -126,5 +141,15 @@ Card.defaultProps = {
   likeCnt: 3,
   is_me: false,
 };
+
+const Index = styled.span`
+  /* border: 1px solid green;
+  border-radius: 5px; */
+  padding: 4px;
+  margin: 5px;
+  /* background-color: #ed7928; */
+  /* color: green; //평가마다 색깔 다르게 하고 싶음.. */
+  font-weight: bold;
+`;
 
 export default Card;

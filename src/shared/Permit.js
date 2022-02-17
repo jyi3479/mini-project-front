@@ -7,7 +7,7 @@ const Permit = (props) => {
 
   const is_session = document.cookie ? true : false;
 
-  if (is_login && is_session) {
+  if (document.cookie) {
     return <>{props.children}</>;
   }
   return null;

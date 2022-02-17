@@ -51,6 +51,7 @@ const BigSquareImage = styled.img`
   background-size: cover;
   background-position: center;
   margin: 10px 0;
+  border-radius: 5px;
   @media (max-width: 280px) {
     min-width: 150px;
   }

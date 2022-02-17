@@ -2,8 +2,18 @@ import React from "react";
 import styled from "styled-components";
 
 const Text = (props) => {
-  const { children, size, margin, width, bold, _onClick, is_click, center } =
-    props;
+  const {
+    children,
+    size,
+    margin,
+    width,
+    bold,
+    _onClick,
+    is_click,
+    center,
+    color,
+    point,
+  } = props;
 
   const styles = {
     size,
@@ -13,6 +23,8 @@ const Text = (props) => {
     bold,
     is_click,
     center,
+    color,
+    point,
   };
   return (
     <P {...styles} onClick={_onClick}>
@@ -30,6 +42,8 @@ Text.defaultProps = {
   is_click: false,
   width: false,
   center: false,
+  color: null,
+  point: false,
 };
 
 const P = styled.p`
@@ -40,6 +54,8 @@ const P = styled.p`
   font-weight: ${(props) => (props.bold ? 700 : 400)};
   ${(props) => (props.center ? `text-align: center;` : "")};
   ${(props) => (props.width ? `width: ${props.width};` : "")};
+  ${(props) => (props.color ? `color: ${props.color};` : "")};
+  ${(props) => (props.point ? `cursor: pointer;` : "")};
 
   /* @media (max-width: 48em) {
     font-size: 16px;

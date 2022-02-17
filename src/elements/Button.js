@@ -55,7 +55,7 @@ const Btn = styled.button`
   height: 35px;
   background-color: ${(props) => (props.disabled ? "#acacac" : "#61b165")};
   border: none;
-  border-radius: 5px;
+  border-radius: 20px;
   color: white;
   font-family: inherit; // font 상속
 

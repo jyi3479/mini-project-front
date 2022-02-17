@@ -54,7 +54,10 @@ const CommentItem = (props) => {
       <Grid is_flex margin="0px 5px">
         <Text margin="0px">{comment}</Text>
         <Grid is_flex width="auto">
-          <Text margin="5px">{commentDate}</Text>
+          <Text margin="5px">
+            {commentDate?.split("T")[0]} &nbsp;
+            {commentDate?.split("T")[1]?.split(".")[0]}
+          </Text>
           {nickname === login_user && (
             <CommentEdit comment_id={commentId} post_id={postId} />
           )}
