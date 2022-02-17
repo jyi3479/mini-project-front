@@ -33,7 +33,7 @@ const PostEdit = (props) => {
   const [post_list, setPostList] = React.useState({});
 
   const editPost = () => {
-    console.log(title, country, city, evaluation, content);
+    console.log(title, country, city, evaluation, content, preview);
 
     // setPostList(temp_list);
 
@@ -44,12 +44,13 @@ const PostEdit = (props) => {
         country,
         city,
         evaluation,
-        content
+        content,
+        preview
       )
     );
   };
 
-  if (!is_login) {
+  if (!document.cookie) {
     return (
       <Grid margin="100px 0px" padding="16px" center>
         <Text size="32px" bold>

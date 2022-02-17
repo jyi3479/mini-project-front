@@ -17,6 +17,10 @@ const Signup = (props) => {
   const [user_name, setUserName] = React.useState("");
 
   const idcheck = () => {
+    if (!emailCheck(id)) {
+      window.alert("이메일 형식이 맞지 않습니다!");
+      return;
+    }
     userApis
       .idcheck(id)
       .then((res) => {

@@ -19,10 +19,12 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 import Permit from "./Permit";
+import Spinner from "./Spinner";
 
 function App() {
   // const is_login = useSelector((state) => state.user.is_login);
   const dispatch = useDispatch();
+  const is_loaded = useSelector((state) => state.post.is_loaded);
   React.useEffect(() => {
     if (document.cookie) {
       dispatch(userActions.loginCheck());
@@ -48,12 +50,15 @@ function App() {
           width="50px"
           is_circle
           _onClick={() => {
-            history.push("/write");
+            window.location.replace("/write");
+
+            // history.push("/write");
           }}
         >
           +
         </Button>
       </Permit>
+      {!is_loaded && <Spinner />}
     </div>
   );
 }

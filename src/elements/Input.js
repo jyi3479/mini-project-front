@@ -26,7 +26,6 @@ const Input = (props) => {
         <InputField
           type={type}
           value={value}
-          defaultValue={defaultValue}
           placeholder={placeholder}
           onChange={_onChange}
           onKeyPress={(e) => {

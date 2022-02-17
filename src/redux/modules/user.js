@@ -53,7 +53,8 @@ const loginDB = (id, pwd) => {
     userApis
       .login(id, pwd)
       .then((res) => {
-        console.log(res);
+        console.log(res.data.msg);
+
         const user_data = res.data;
         setCookie("token", user_data.token);
         localStorage.setItem("nickname", res.data.nickname);

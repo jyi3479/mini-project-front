@@ -61,7 +61,7 @@ const CommentItem = (props) => {
             <CommentEdit comment_id={commentId} post_id={postId} />
           )}
           {nickname === login_user && (
-            <Text margin="5px" onClick={deleteComment} point>
+            <Text margin="5px" _onClick={deleteComment} point>
               삭제
             </Text>
           )}

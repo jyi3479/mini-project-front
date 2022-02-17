@@ -58,28 +58,30 @@ const PostWrite = (props) => {
 
     // setPostList(temp_list);
 
-    dispatch(postActions.addPostDB(title, country, city, evaluation, contents));
+    dispatch(
+      postActions.addPostDB(title, country, city, evaluation, contents, preview)
+    );
   };
 
-  // if (!is_login) {
-  //   return (
-  //     <Grid margin="100px 0px" padding="16px" center>
-  //       <Text size="32px" bold>
-  //         앗! 잠깐!
-  //       </Text>
-  //       <Text size="16px">로그인 후에만 글을 쓸 수 있어요!</Text>
-  //       <Button
-  //         _onClick={() => {
-  //           // push는 메인페이지 이동해도 뒤로가기 하면 write 페이지 나올 수 있다.
-  //           // replace는 페이지를 교체해주는 것이기 때문에 메인페이지로 이동해도 뒤로가기 누르면 write 페이지 안나온다.
-  //           history.replace("/");
-  //         }}
-  //       >
-  //         로그인 하러가기
-  //       </Button>
-  //     </Grid>
-  //   );
-  // }
+  if (!document.cookie) {
+    return (
+      <Grid margin="100px 0px" padding="16px" center>
+        <Text size="32px" bold>
+          앗! 잠깐!
+        </Text>
+        <Text size="16px">로그인 후에만 글을 쓸 수 있어요!</Text>
+        <Button
+          _onClick={() => {
+            // push는 메인페이지 이동해도 뒤로가기 하면 write 페이지 나올 수 있다.
+            // replace는 페이지를 교체해주는 것이기 때문에 메인페이지로 이동해도 뒤로가기 누르면 write 페이지 안나온다.
+            history.replace("/");
+          }}
+        >
+          로그인 하러가기
+        </Button>
+      </Grid>
+    );
+  }
   return (
     <Grid padding="0px 40px" width="70vw" margin="auto">
       <Grid padding="10px">
