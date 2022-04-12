@@ -4,21 +4,19 @@ import { Grid, Text, Button, Image } from "../elements";
 import { history } from "../redux/configureStore";
 import styled from "styled-components";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
 const Header = (props) => {
   const dispatch = useDispatch();
   const nickname = localStorage.getItem("nickname");
-  const is_login = useSelector((state) => state.user.is_login);
   if (document.cookie) {
     return (
       <Grid center>
         <div style={{ position: "fixed", top: 10, right: 15 }}>
           <Grid is_flex>
             <Text margin="0px 10px">
-              <span style={{ fontWeight: "bold" }}>{nickname}</span>님
-              환영합니다
+              <span style={{ fontWeight: "bold" }}>{nickname}</span>님 환영합니다
             </Text>
 
             <Button

@@ -8,14 +8,4 @@ import CommentEdit from "./CommentEdit";
 import ComplexGrid from "./ComplexGrid";
 import MyPost from "./MyPost";
 
-export {
-  Card,
-  CommentList,
-  CommentWrite,
-  Header,
-  Post,
-  Upload,
-  CommentEdit,
-  ComplexGrid,
-  MyPost,
-};
+export { Card, CommentList, CommentWrite, Header, Post, Upload, CommentEdit, ComplexGrid, MyPost };

@@ -3,19 +3,7 @@ import styled from "styled-components";
 import { Text } from "../elements";
 
 const Input = (props) => {
-  const {
-    label,
-    type,
-    placeholder,
-    value,
-    defaultValue,
-    _onChange,
-    is_submit,
-    _onSubmit,
-    textarea,
-    margin,
-    width,
-  } = props;
+  const { label, type, placeholder, value, defaultValue, _onChange, is_submit, _onSubmit, textarea, margin, width } = props;
 
   if (is_submit) {
     return (
@@ -43,12 +31,7 @@ const Input = (props) => {
         <Text margin="5px 0" bold>
           {label}
         </Text>
-        <TextAreaField
-          value={value}
-          rows={10}
-          placeholder={placeholder}
-          onChange={_onChange}
-        />
+        <TextAreaField value={value} rows={10} placeholder={placeholder} onChange={_onChange} />
       </label>
     );
   } else {
@@ -57,13 +40,7 @@ const Input = (props) => {
         <Text margin="5px 0" bold>
           {label}
         </Text>
-        <InputField
-          type={type}
-          value={value}
-          placeholder={placeholder}
-          onChange={_onChange}
-          style={{ margin, width }}
-        />
+        <InputField type={type} value={value} placeholder={placeholder} onChange={_onChange} style={{ margin, width }} />
       </label>
     );
   }
@@ -84,15 +61,12 @@ Input.defaultProps = {
 };
 
 const InputField = styled.input`
-  /* ${(props) => (props.width ? `width: ${props.width};` : `width: 100%;`)} */
   width: 100%;
-  /* min-width: 230px; */
   box-sizing: border-box;
   padding: 10px;
   border: 2px solid #acacac;
   border-radius: 10px;
-  ${(props) =>
-    props.margin ? `margin: ${props.margin};` : `margin-bottom: 20px;`}
+  ${(props) => (props.margin ? `margin: ${props.margin};` : `margin-bottom: 20px;`)}
   font-family: inherit; // font 상속
 
   &:focus {

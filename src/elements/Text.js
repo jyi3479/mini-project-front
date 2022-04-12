@@ -2,18 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Text = (props) => {
-  const {
-    children,
-    size,
-    margin,
-    width,
-    bold,
-    _onClick,
-    is_click,
-    center,
-    color,
-    point,
-  } = props;
+  const { children, size, margin, width, bold, _onClick, is_click, center, color, point } = props;
 
   const styles = {
     size,
@@ -56,10 +45,6 @@ const P = styled.p`
   ${(props) => (props.width ? `width: ${props.width};` : "")};
   ${(props) => (props.color ? `color: ${props.color};` : "")};
   ${(props) => (props.point ? `cursor: pointer;` : "")};
-
-  /* @media (max-width: 48em) {
-    font-size: 16px;
-  } */
 `;
 
 export default Text;

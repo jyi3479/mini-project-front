@@ -10,7 +10,6 @@ const Like = (props) => {
   const dispatch = useDispatch();
   const is_like = useSelector((state) => state.post.target).islike;
   const user_info = useSelector((state) => state.user.user); // 접속자 id
-  // console.log(post_list[parseInt(post_id)]);
   const [isLike, setIsLike] = React.useState(is_like);
   console.log(is_like);
   const likeCheck = () => {
@@ -24,10 +23,7 @@ const Like = (props) => {
 
   return (
     <React.Fragment>
-      <FavoriteIcon
-        onClick={likeCheck}
-        style={{ color: isLike ? "pink" : "grey" }}
-      />
+      <FavoriteIcon onClick={likeCheck} style={{ color: isLike ? "pink" : "grey" }} />
     </React.Fragment>
   );
 };

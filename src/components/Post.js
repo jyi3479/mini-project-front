@@ -68,12 +68,7 @@ const Post = (props) => {
             dispatch(postActions.isLoaded(false));
           }}
         >
-          <CardMedia
-            component="img"
-            height="194"
-            image={`${props.imgUrl}`}
-            alt="Paella dish"
-          />
+          <CardMedia component="img" height="194" image={`${props.imgUrl}`} alt="Paella dish" />
           <CardHeader
             title={`${props.title}`}
             subheader={`${props.country}/${props.city}`}
@@ -87,10 +82,7 @@ const Post = (props) => {
             }}
           />
         </Grid>
-        <CardActions
-          disableSpacing
-          sx={{ display: "flex", justifyContent: "space-between" }}
-        >
+        <CardActions disableSpacing sx={{ display: "flex", justifyContent: "space-between" }}>
           <CardContent>
             <Typography variant="body2" style={{ fontFamily: "inherit" }}>
               댓글 {props.commentCnt} &nbsp; 좋아요 {like_cnt}

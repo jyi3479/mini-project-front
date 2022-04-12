@@ -2,17 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Button = (props) => {
-  const {
-    children,
-    width,
-    bg,
-    margin,
-    padding,
-    font_size,
-    _disabled,
-    _onClick,
-    is_circle,
-  } = props;
+  const { children, width, bg, margin, padding, font_size, _disabled, _onClick, is_circle } = props;
 
   const styles = {
     width,

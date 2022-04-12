@@ -1,8 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { Button } from "../elements";
-// import { storage } from "./firebase";
 import { actionCreators as imageActions } from "../redux/modules/image";
 
 const Upload = (props) => {
@@ -30,29 +28,12 @@ const Upload = (props) => {
     };
   };
 
-  // 파이어베이스 storage에 파일 업로드 하기
-  const uploadFB = () => {
-    let image = fileInput.current.files[0];
-    console.log(image);
-    // dispatch(imageActions.uploadImageFB(image));
-  };
-
   return (
     <React.Fragment>
-      {/* disabled 속성 주면 파일선택 버튼 안눌린다. */}
       <ImageLabel className="input-file-button" for="input-file">
         이미지 찾기
       </ImageLabel>
-      <input
-        id="input-file"
-        type="file"
-        onChange={selectFile}
-        ref={fileInput}
-        disabled={is_uploading}
-        style={{ display: "none" }}
-      />
-
-      {/* <Button _onClick={uploadFB}>업로드하기</Button> */}
+      <input id="input-file" type="file" onChange={selectFile} ref={fileInput} disabled={is_uploading} style={{ display: "none" }} />
     </React.Fragment>
   );
 };

@@ -58,9 +58,7 @@ const PostWrite = (props) => {
 
     // setPostList(temp_list);
 
-    dispatch(
-      postActions.addPostDB(title, country, city, evaluation, contents, preview)
-    );
+    dispatch(postActions.addPostDB(title, country, city, evaluation, contents, preview));
   };
 
   if (!document.cookie) {
@@ -173,15 +171,7 @@ const PostWrite = (props) => {
           width="30vw"
           margin="10px auto"
           _onClick={addPost}
-          _disabled={
-            title === "" ||
-            country === "" ||
-            city === "" ||
-            evaluation === "" ||
-            contents === ""
-              ? true
-              : false
-          }
+          _disabled={title === "" || country === "" || city === "" || evaluation === "" || contents === "" ? true : false}
         >
           게시글 작성
         </Button>

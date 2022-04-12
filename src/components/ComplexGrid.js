@@ -21,8 +21,7 @@ const ComplexGrid = (props) => {
         margin: "auto",
         maxWidth: 500,
         flexGrow: 1,
-        backgroundColor: (theme) =>
-          theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+        backgroundColor: (theme) => (theme.palette.mode === "dark" ? "#1A2027" : "#fff"),
       }}
     >
       <Grid
@@ -40,36 +39,16 @@ const ComplexGrid = (props) => {
         <Grid item xs={12} sm container>
           <Grid item xs container direction="column" spacing={2}>
             <Grid item xs>
-              <Typography
-                gutterBottom
-                variant="subtitle1"
-                component="div"
-                style={{ fontFamily: "inherit" }}
-              >
+              <Typography gutterBottom variant="subtitle1" component="div" style={{ fontFamily: "inherit" }}>
                 {props.title}
               </Typography>
-              {/* <Typography
-                variant="body2"
-                gutterBottom
-                style={{ fontFamily: "inherit" }}
-              >
-                {props.country} / {props.city}
-              </Typography> */}
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                style={{ fontFamily: "inherit" }}
-              >
+              <Typography variant="body2" color="text.secondary" style={{ fontFamily: "inherit" }}>
                 {props.country} / {props.city}
               </Typography>
             </Grid>
           </Grid>
           <Grid item>
-            <Typography
-              variant="subtitle1"
-              component="div"
-              style={{ fontFamily: "inherit" }}
-            >
+            <Typography variant="subtitle1" component="div" style={{ fontFamily: "inherit" }}>
               댓글 {props.commentCnt} 좋아요 {props.likeCnt}
             </Typography>
           </Grid>

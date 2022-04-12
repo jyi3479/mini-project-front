@@ -2,11 +2,6 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import moment from "moment";
 import { commentApis } from "../../shared/api";
-import { useSelector } from "react-redux";
-// import firebase from "firebase/app";
-// import { firestore, realtime } from "../../shared/firebase";
-// import moment from "moment";
-import { actionCreators as postActions } from "./post";
 
 //action
 const SET_COMMENT = "SET_COMMENT";
@@ -165,16 +160,12 @@ export default handleActions(
       }),
     [EDIT_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        let idx = draft.list.findIndex(
-          (p) => p.commentId === action.payload.commentId
-        );
+        let idx = draft.list.findIndex((p) => p.commentId === action.payload.commentId);
         draft.list[idx] = { ...draft.list[idx], ...action.payload.comment };
       }),
     [DELETE_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        let idx = draft.list.findIndex(
-          (p) => p.commentId === action.payload.commentId
-        );
+        let idx = draft.list.findIndex((p) => p.commentId === action.payload.commentId);
         draft.list.splice(idx, 1); //삭제할 게시글의 index를 찾아서 splice로 지운다.
       }),
   },

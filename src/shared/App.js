@@ -1,14 +1,6 @@
 import "./App.css";
 import React from "react";
-import {
-  PostList,
-  Login,
-  Signup,
-  PostWrite,
-  PostEdit,
-  PostDetail,
-  MyPage,
-} from "../pages";
+import { PostList, Login, Signup, PostWrite, PostEdit, PostDetail, MyPage } from "../pages";
 import { Header } from "../components";
 import { Grid, Button } from "../elements";
 
@@ -22,7 +14,6 @@ import Permit from "./Permit";
 import Spinner from "./Spinner";
 
 function App() {
-  // const is_login = useSelector((state) => state.user.is_login);
   const dispatch = useDispatch();
   const is_loaded = useSelector((state) => state.post.is_loaded);
   React.useEffect(() => {
@@ -51,8 +42,6 @@ function App() {
           is_circle
           _onClick={() => {
             window.location.replace("/write");
-
-            // history.push("/write");
           }}
         >
           +

@@ -25,10 +25,6 @@ const PostList = (props) => {
     dispatch(postActions.getPostDB("time"));
   };
 
-  // React.useEffect(() => {
-  //   dispatch(postActions.getPostDB());
-  // }, []);
-
   return (
     <Grid>
       <Grid container justifyContent="flex-end">
