@@ -75,11 +75,6 @@ const Post = (props) => {
             alt="Paella dish"
           />
           <CardHeader
-            action={
-              <IconButton aria-label="settings">
-                <MoreVertIcon />
-              </IconButton>
-            }
             title={`${props.title}`}
             subheader={`${props.country}/${props.city}`}
             titleTypographyProps={{

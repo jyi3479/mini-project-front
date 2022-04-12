@@ -9,15 +9,11 @@ import { actionCreators as postActions } from "../redux/modules/post";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { likeApis, postApis } from "../shared/api";
 import styled from "styled-components";
-// import { useSelector } from "react-redux";
-// import "moment/locale/ko"; //백엔드에서 날짜를 주기 때문에 안써도 될 것 같습니다!
-// const [layout, setLayout] = useState(_post ? _post.layout : "bottom");
 
 const Card = (props) => {
   const dispatch = useDispatch();
   const [is_like, setIsLike] = React.useState(false);
   const [like_cnt, setLikeCnt] = React.useState(0);
-  const [comment_cnt, setCommentCnt] = React.useState(0);
 
   const likeCheck = async () => {
     const res = await likeApis.clickLike(props.post_id);
@@ -46,8 +42,7 @@ const Card = (props) => {
 
           <Grid is_flex width="auto">
             <Text margin="0px 5px">
-              {props.postDate?.split("T")[0]}{" "}
-              {props.postDate?.split("T")[1]?.split(".")[0]}
+              {props.postDate?.split("T")[0]} {props.postDate?.split("T")[1]?.split(".")[0]}
             </Text>
 
             {props.is_me && (
@@ -94,7 +89,6 @@ const Card = (props) => {
                   {props.country} &nbsp; / &nbsp; {props.city}
                 </Text>
               </Grid>
-              {/* <hr /> */}
               <Grid padding="40px">
                 <Image shape="big_square" size="60vw" src={props.imgUrl} />
               </Grid>
@@ -145,9 +139,7 @@ const Index = styled.span`
   border: 1px solid green;
   border-radius: 20px;
   padding: 4px;
-
-  /* background-color: #ed7928; */
-  color: green; //평가마다 색깔 다르게 하고 싶음..
+  color: green;
   font-weight: bold;
 `;
 

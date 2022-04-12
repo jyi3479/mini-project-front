@@ -25,15 +25,10 @@ export default function CommentEdit(props) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
   const dispatch = useDispatch();
-
-  const user_info = useSelector((state) => state.user.user);
   const target_comment = useSelector((state) => state.comment.list);
   let _comment = target_comment.find((p) => p.commentId === comment_id);
-  const [comment, setComment] = React.useState(
-    _comment ? _comment.comment : ""
-  );
+  const [comment, setComment] = React.useState(_comment ? _comment.comment : "");
 
   const editComment = () => {
     const comment_list = {
@@ -41,9 +36,7 @@ export default function CommentEdit(props) {
       comment: comment,
     };
     console.log(comment_id, comment_list);
-    dispatch(
-      commentActions.editCommentDB(parseInt(comment_id), post_id, comment_list)
-    );
+    dispatch(commentActions.editCommentDB(parseInt(comment_id), post_id, comment_list));
   };
 
   const onChange = (e) => {
@@ -55,23 +48,11 @@ export default function CommentEdit(props) {
       <Text _onClick={handleOpen} point>
         수정
       </Text>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+      <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
         <Box sx={style}>
           <Grid is_flex>
             <Grid width="100%">
-              <Input
-                placeholder="댓글 내용을 입력해주세요 :)"
-                _onChange={onChange}
-                value={comment}
-                defaultValue={comment}
-                onSubmit={editComment}
-                is_submit
-              />
+              <Input placeholder="댓글 내용을 입력해주세요 :)" _onChange={onChange} value={comment} defaultValue={comment} onSubmit={editComment} is_submit />
             </Grid>
             <Button
               width="50px"

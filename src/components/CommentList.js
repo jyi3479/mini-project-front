@@ -1,10 +1,9 @@
 import React from "react";
-import { Grid, Image, Text } from "../elements";
+import { Grid, Text } from "../elements";
 import { CommentEdit } from ".";
 
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as commentActions } from "../redux/modules/comment";
-import { actionCreators as userActions } from "../redux/modules/user";
 
 const CommentList = (props) => {
   const { post_id } = props;
@@ -31,15 +30,7 @@ const CommentItem = (props) => {
   const dispatch = useDispatch();
   const login_user = localStorage.getItem("nickname");
 
-  const {
-    postId,
-    commentId,
-    username,
-    nickname,
-    comment,
-    commentDate,
-    userProfile,
-  } = props;
+  const { postId, commentId, nickname, comment, commentDate } = props;
   const deleteComment = () => {
     dispatch(commentActions.deleteCommentDB(parseInt(commentId)));
   };
@@ -57,9 +48,7 @@ const CommentItem = (props) => {
             {commentDate?.split("T")[0]} &nbsp;
             {commentDate?.split("T")[1]?.split(".")[0]}
           </Text>
-          {nickname === login_user && (
-            <CommentEdit comment_id={commentId} post_id={postId} />
-          )}
+          {nickname === login_user && <CommentEdit comment_id={commentId} post_id={postId} />}
           {nickname === login_user && (
             <Text margin="5px" _onClick={deleteComment} point>
               삭제

@@ -25,7 +25,13 @@ const ComplexGrid = (props) => {
           theme.palette.mode === "dark" ? "#1A2027" : "#fff",
       }}
     >
-      <Grid container spacing={2}>
+      <Grid
+        container
+        spacing={2}
+        onClick={() => {
+          history.push(`/detail/${props.postId}`);
+        }}
+      >
         <Grid item>
           <ButtonBase sx={{ width: 128, height: 128 }}>
             <Img alt="complex" src={props.imgUrl} />
@@ -55,18 +61,6 @@ const ComplexGrid = (props) => {
                 style={{ fontFamily: "inherit" }}
               >
                 {props.country} / {props.city}
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Typography
-                sx={{ cursor: "pointer" }}
-                variant="body2"
-                style={{ fontFamily: "inherit" }}
-                onClick={() => {
-                  history.push(`/detail/${props.postId}`);
-                }}
-              >
-                바로가기
               </Typography>
             </Grid>
           </Grid>
