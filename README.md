@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+# Triptalk 🏝️
+여행하면서 찍은 사진과 평가, 후기들을 공유하는 사이트입니다!
+게시글은 모두가 볼 수 있고, 댓글 기능과 좋아요 기능은 로그인한 유저만 이용할 수 있습니다.
+마이페이지에서 작성한 글과 좋아요를 누른 글을 볼 수 있습니다.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## 1. 제작기간 & 팀원 소개
+- 2022년 2월 10일 ~ 2022년 2월 16일
+- 프론트 : 이주영 소정현 [Github](https://github.com/jyi3479/mini-project-front)
+- 백엔드 : 이혁준 박재균 김채경 [Github](https://github.com/KimCG1130/miniproject)
 
-In the project directory, you can run:
+[Triptalk 보러가기](http://triptalk.com.s3-website.ap-northeast-2.amazonaws.com)
+![미니프로젝트 사진](https://user-images.githubusercontent.com/94282246/154506847-ca0ca7ff-983b-4843-99e3-0350ad2ba70f.png)
 
-### `yarn start`
+## 2. API 설계
+[https://www.notion.so/Trip-Talk-46f9f72bdb4441f88b1d84b28eaf0d5f](https://www.notion.so/Trip-Talk-46f9f72bdb4441f88b1d84b28eaf0d5f)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 3. 와이어프레임
 
-### `yarn test`
+![와이어프레임1](https://user-images.githubusercontent.com/94282246/154503570-98cb1d44-f181-4159-b0a7-b7417e89c109.png)
+![와이어프레임2](https://user-images.githubusercontent.com/94282246/154503578-6e11ef2c-0740-4f90-84c2-d58f2c191a02.png)
+![와이어프레임3](https://user-images.githubusercontent.com/94282246/154503581-c70e9f3b-f2a7-4fb1-89d6-9d83b1dd7a18.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+## 4. DB 설계
+![DB 설계 사진](https://user-images.githubusercontent.com/94282246/154505490-fd284620-5cee-4177-95ed-aa34151c9de4.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 5. Trouble Shooting
+- CORS 오류 해결 : 백엔드와 프론트 중 한쪽에서 설정을 변경하여 해결(프론트 쪽에서 proxy를 사용하고 백엔드에서도 설정을 해주다가 백엔드만 설정하기로 합의)
+- 로그인 방식 변경 : JSESSIONID 방식을 사용했으나, 프론트와 연결이 불가능하다는 판단 후(https 문제 등) JWT 방식으로 변경
+- 로그인 유지 : 로그인 후 유저 정보를 GET 요청으로 받아와서 유저 권한을 유지하려고 했으나, 새로고침 등에 대비하여 local storage에 nickname(중복검사된 값)을 로그인 여부와 정보로 활용
+- 좋아요 기능 : 좋아요 누를 때마다 좋아요 수가 갱신되도록 상태값 관리
+- 이미지 미리보기 기능 및 업로드 : 미리보기를 상태값으로 관리 후 작성하기 누른 이미지만 서버로 저장
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
