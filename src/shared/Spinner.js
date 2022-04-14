@@ -17,8 +17,7 @@ const Outer = styled.div`
   top: 100;
   left: 0;
   display: flex;
-  /* align-items: center; // 세로로 센터 */
-  justify-content: center; // 가로로 센터
+  justify-content: center;
 `;
 
 const Logo = styled.img`

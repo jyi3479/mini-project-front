@@ -24,7 +24,6 @@ const Signup = (props) => {
     userApis
       .idcheck(id)
       .then((res) => {
-        console.log(res);
         if (res.data === true) {
           alert("사용 가능한 아이디입니다!");
         }
@@ -40,8 +39,6 @@ const Signup = (props) => {
     userApis
       .nickcheck(user_name)
       .then((res) => {
-        console.log(res);
-        console.log(res);
         if (res.data === true) {
           alert("사용 가능한 닉네임입니다!");
         }
@@ -103,12 +100,7 @@ const Signup = (props) => {
               }}
             />
           </Grid>
-          <Button
-            width="8vw"
-            _disabled={id === "" ? true : false}
-            margin="8px 0px 0px 4px"
-            _onClick={idcheck}
-          >
+          <Button width="8vw" _disabled={id === "" ? true : false} margin="8px 0px 0px 4px" _onClick={idcheck}>
             중복확인
           </Button>
         </Grid>
@@ -123,12 +115,7 @@ const Signup = (props) => {
               }}
             />
           </Grid>
-          <Button
-            width="8vw"
-            _disabled={user_name === "" ? true : false}
-            margin="8px 0px 0px 4px"
-            _onClick={nickcheck}
-          >
+          <Button width="8vw" _disabled={user_name === "" ? true : false} margin="8px 0px 0px 4px" _onClick={nickcheck}>
             중복확인
           </Button>
         </Grid>
@@ -161,9 +148,7 @@ const Signup = (props) => {
             _onClick={() => {
               signup();
             }}
-            _disabled={
-              id === "" || pwd === "" || user_name === "" ? true : false
-            }
+            _disabled={id === "" || pwd === "" || user_name === "" ? true : false}
           >
             회원가입하기
           </Button>

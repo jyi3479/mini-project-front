@@ -1,10 +1,8 @@
 import React from "react";
 import { Grid, Image, Text, Button, Input } from "../elements";
-// import Upload from "../shared/Upload";
 
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
-// import { actionCreators as imageActions } from "../redux/modules/image";
 
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
@@ -14,40 +12,20 @@ const PostEdit = (props) => {
   const dispatch = useDispatch();
   const target_id = useParams().postId;
 
-  //이미 App.js에서 세션이 있는지 확인했으니, is_login만 확인하면 된다.
-  const is_login = useSelector((state) => state.user.is_login);
   const target = useSelector((state) => state.post.target);
-  console.log(target);
   const preview = useSelector((state) => state.image.preview);
 
   const { history } = props;
 
-  // const [image, setImage] = React.useState("");
   const [title, setTitle] = React.useState(target ? target.title : "");
   const [country, setCountry] = React.useState(target ? target.country : "");
   const [city, setCity] = React.useState(target ? target.city : "");
-  const [evaluation, setEvaluation] = React.useState(
-    target ? target.evaluation : ""
-  );
+  const [evaluation, setEvaluation] = React.useState(target ? target.evaluation : "");
   const [content, setContents] = React.useState(target ? target.content : "");
   const [post_list, setPostList] = React.useState({});
 
   const editPost = () => {
-    console.log(title, country, city, evaluation, content, preview);
-
-    // setPostList(temp_list);
-
-    dispatch(
-      postActions.editPostDB(
-        target_id,
-        title,
-        country,
-        city,
-        evaluation,
-        content,
-        preview
-      )
-    );
+    dispatch(postActions.editPostDB(target_id, title, country, city, evaluation, content, preview));
   };
 
   if (!document.cookie) {
@@ -59,8 +37,6 @@ const PostEdit = (props) => {
         <Text size="16px">로그인 후에만 글을 쓸 수 있어요!</Text>
         <Button
           _onClick={() => {
-            // push는 메인페이지 이동해도 뒤로가기 하면 write 페이지 나올 수 있다.
-            // replace는 페이지를 교체해주는 것이기 때문에 메인페이지로 이동해도 뒤로가기 누르면 write 페이지 안나온다.
             history.replace("/");
           }}
         >
@@ -76,11 +52,7 @@ const PostEdit = (props) => {
           미리보기
         </Text>
         <Grid is_flex>
-          <Image
-            half
-            shape="big_square"
-            src={preview ? preview : target.imgUrl}
-          />
+          <Image half shape="big_square" src={preview ? preview : target.imgUrl} />
           <Upload />
         </Grid>
       </Grid>
@@ -151,15 +123,7 @@ const PostEdit = (props) => {
           width="30vw"
           margin="10px auto"
           _onClick={editPost}
-          _disabled={
-            title === "" ||
-            country === "" ||
-            city === "" ||
-            evaluation === "" ||
-            content === ""
-              ? true
-              : false
-          }
+          _disabled={title === "" || country === "" || city === "" || evaluation === "" || content === "" ? true : false}
         >
           게시글 수정
         </Button>

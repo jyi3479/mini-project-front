@@ -15,7 +15,6 @@ const PostList = (props) => {
   React.useEffect(() => {
     dispatch(postActions.getPostDB("like"));
   }, []);
-  console.log(post_list);
 
   const getLike = () => {
     dispatch(postActions.getPostDB("like"));

@@ -10,7 +10,7 @@ const MyPage = (props) => {
   const dispatch = useDispatch();
   const post_list = useSelector((state) => state.mypage.my_list);
   const like_post = useSelector((state) => state.mypage.my_like);
-  console.log(post_list);
+
   React.useEffect(() => {
     dispatch(MyActions.myPostDB());
     dispatch(MyActions.myLikeDB());

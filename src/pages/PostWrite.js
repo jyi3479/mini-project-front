@@ -1,29 +1,23 @@
 import React from "react";
 import { Grid, Image, Text, Button, Input } from "../elements";
-// import Upload from "../shared/Upload";
 
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
-// import { actionCreators as imageActions } from "../redux/modules/image";
 
 import styled from "styled-components";
 import { Upload } from "../components";
 
 const PostWrite = (props) => {
   const dispatch = useDispatch();
-  //이미 App.js에서 세션이 있는지 확인했으니, is_login만 확인하면 된다.
-  const is_login = useSelector((state) => state.user.is_login);
   const preview = useSelector((state) => state.image.preview);
 
   const { history } = props;
 
-  // const [image, setImage] = React.useState("");
   const [title, setTitle] = React.useState("");
   const [country, setCountry] = React.useState("");
   const [city, setCity] = React.useState("");
   const [evaluation, setEvaluation] = React.useState("");
   const [contents, setContents] = React.useState("");
-  const [post_list, setPostList] = React.useState({});
 
   const changeContents = (e) => {
     setContents(e.target.value);
@@ -54,10 +48,6 @@ const PostWrite = (props) => {
   // };
 
   const addPost = () => {
-    console.log(title, country, city, evaluation, contents);
-
-    // setPostList(temp_list);
-
     dispatch(postActions.addPostDB(title, country, city, evaluation, contents, preview));
   };
 
@@ -70,8 +60,6 @@ const PostWrite = (props) => {
         <Text size="16px">로그인 후에만 글을 쓸 수 있어요!</Text>
         <Button
           _onClick={() => {
-            // push는 메인페이지 이동해도 뒤로가기 하면 write 페이지 나올 수 있다.
-            // replace는 페이지를 교체해주는 것이기 때문에 메인페이지로 이동해도 뒤로가기 누르면 write 페이지 안나온다.
             history.replace("/");
           }}
         >

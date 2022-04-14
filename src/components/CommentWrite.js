@@ -7,8 +7,8 @@ import { actionCreators as commentActions } from "../redux/modules/comment";
 const CommentWrite = (props) => {
   const { post_id } = props;
   const dispatch = useDispatch();
-  const [comment, setComment] = useState("");
   const user_info = useSelector((state) => state.user.user);
+  const [comment, setComment] = useState("");
 
   const addComment = () => {
     console.log(post_id, user_info.nickname, comment);

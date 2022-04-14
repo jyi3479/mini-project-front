@@ -1,6 +1,5 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 
 import { Grid, Input, Button, Text } from "../elements";
@@ -22,13 +21,15 @@ const style = {
 
 export default function CommentEdit(props) {
   const { comment_id, post_id } = props;
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
   const dispatch = useDispatch();
   const target_comment = useSelector((state) => state.comment.list);
-  let _comment = target_comment.find((p) => p.commentId === comment_id);
+
+  const _comment = target_comment.find((p) => p.commentId === comment_id);
+  const [open, setOpen] = React.useState(false);
   const [comment, setComment] = React.useState(_comment ? _comment.comment : "");
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const editComment = () => {
     const comment_list = {
